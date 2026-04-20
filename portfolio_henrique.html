@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Henrique Cipriani — Portfólio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0b0c0f;
+      --bg2: #111318;
+      --bg3: #181a20;
+      --line: rgba(255,255,255,0.07);
+      --line2: rgba(255,255,255,0.13);
+      --text: #e8e6e0;
+      --muted: #8a8880;
+      --faint: #4a4845;
+      --accent: #3a7bd5;
+      --accent2: #5b9cf6;
+      --accent-dim: rgba(58,123,213,0.12);
+      --accent-glow: rgba(58,123,213,0.25);
+      --font-display: 'Syne', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 3rem;
+      height: 60px;
+      background: rgba(11,12,15,0.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--accent2); }
+
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 3rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .hero-eyebrow {
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.2s forwards;
+    }
+
+    .hero-name {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.35s forwards;
+    }
+    .hero-name .dim { color: var(--muted); font-weight: 400; }
+
+    .hero-desc {
+      max-width: 540px;
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.5s forwards;
+    }
+
+    .hero-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.65s forwards;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-family: var(--font-body);
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { background: var(--accent2); transform: translateY(-1px); }
+    .btn-ghost { background: transparent; color: var(--muted); border: 1px solid var(--line2); }
+    .btn-ghost:hover { color: var(--text); border-color: var(--faint); }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem; left: 3rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--faint);
+      opacity: 0;
+      animation: fadeUp 0.6s 1s forwards;
+    }
+    .scroll-line { width: 40px; height: 1px; background: var(--faint); }
+
+    /* SECTIONS */
+    section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 6rem 3rem;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1.5rem;
+      margin-bottom: 3.5rem;
+    }
+    .section-number {
+      font-family: var(--font-display);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--accent2);
+      text-transform: uppercase;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .divider { flex: 1; height: 1px; background: var(--line); }
+
+    /* PROJECTS */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .project-card {
+      background: var(--bg2);
+      padding: 2rem;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: background 0.2s;
+      position: relative;
+    }
+    .project-card:hover { background: var(--bg3); }
+    .project-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 2rem; right: 2rem;
+      height: 2px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+    }
+    .project-card:hover::after { transform: scaleX(1); }
+
+    .project-tag-row { display: flex; flex-wrap: wrap; gap: 6px; }
+    .ptag {
+      font-size: 11px;
+      padding: 3px 9px;
+      border-radius: 4px;
+      border: 1px solid var(--line2);
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+    .ptag.featured { border-color: var(--accent-glow); color: var(--accent2); background: var(--accent-dim); }
+
+    .project-title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+    .project-desc { font-size: 14px; color: var(--muted); line-height: 1.65; flex: 1; }
+
+    .project-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 8px;
+    }
+    .project-stack { display: flex; gap: 5px; flex-wrap: wrap; }
+    .stack-dot { font-size: 11px; color: var(--faint); }
+    .project-link-label { font-size: 12px; color: var(--accent2); }
+
+    /* SKILLS */
+    .skills-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+    .skill-group-title {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 1rem;
+    }
+    .skill-bars { display: flex; flex-direction: column; gap: 14px; }
+    .skill-bar-top { display: flex; justify-content: space-between; margin-bottom: 6px; }
+    .skill-bar-name { font-size: 13px; color: var(--text); }
+    .skill-bar-pct { font-size: 12px; color: var(--faint); font-family: var(--font-display); }
+    .skill-bar-track { height: 3px; background: var(--line2); border-radius: 2px; overflow: hidden; }
+    .skill-bar-fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 2px;
+      width: 0;
+      transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .tags-cloud { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 1rem; }
+    .cloud-tag {
+      font-size: 12px;
+      padding: 5px 12px;
+      border: 1px solid var(--line2);
+      border-radius: 4px;
+      color: var(--muted);
+      transition: all 0.2s;
+    }
+    .cloud-tag:hover { color: var(--text); border-color: var(--faint); }
+
+    /* EXPERIENCE */
+    .exp-entry {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 2rem;
+      padding: 2.5rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .exp-entry:first-child { border-top: 1px solid var(--line); }
+    .exp-date { font-size: 12px; color: var(--faint); padding-top: 4px; line-height: 1.7; }
+    .exp-role { font-family: var(--font-display); font-size: 1.05rem; font-weight: 600; margin-bottom: 3px; }
+    .exp-company { font-size: 13px; color: var(--accent2); margin-bottom: 10px; }
+    .exp-points { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+    .exp-points li { font-size: 13px; color: var(--muted); padding-left: 16px; position: relative; }
+    .exp-points li::before { content: '—'; position: absolute; left: 0; color: var(--faint); }
+
+    /* COURSES */
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .course-cell { background: var(--bg2); padding: 1.25rem 1.5rem; }
+    .course-cell-name { font-size: 13px; color: var(--text); line-height: 1.4; margin-bottom: 4px; }
+    .course-cell-meta { font-size: 11px; color: var(--faint); }
+
+    /* CONTACT */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+    .contact-tagline {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+    }
+    .contact-tagline em { font-style: normal; color: var(--muted); font-weight: 400; }
+    .contact-items { display: flex; flex-direction: column; gap: 14px; }
+    .contact-item { display: flex; align-items: flex-start; gap: 12px; }
+    .contact-icon { color: var(--accent2); flex-shrink: 0; margin-top: 2px; }
+    .contact-label { font-size: 12px; color: var(--faint); }
+    .contact-value { font-size: 14px; color: var(--text); }
+    .contact-right { display: flex; flex-direction: column; gap: 10px; padding-top: 0.25rem; }
+    .contact-social {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 1rem 1.25rem;
+      border: 1px solid var(--line2);
+      border-radius: 8px;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 13px;
+      transition: all 0.2s;
+    }
+    .contact-social:hover { color: var(--text); border-color: var(--faint); background: var(--bg2); }
+    .contact-social svg { color: var(--accent2); flex-shrink: 0; }
+
+    footer {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 3rem;
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--faint);
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s, transform 0.7s;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      nav { padding: 0 1.5rem; }
+      .nav-links { display: none; }
+      section, .hero { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .hero-scroll { left: 1.5rem; }
+      .exp-entry { grid-template-columns: 1fr; gap: 0.5rem; }
+      .skills-layout { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .projects-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">HC<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#projetos">Projetos</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experiencia">Experiência</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <p class="hero-eyebrow">Portfólio · Balneário Camboriú – SC</p>
+  <h1 class="hero-name">
+    Henrique<br>
+    <span class="dim">Cipriani Ertal</span>
+  </h1>
+  <p class="hero-desc">
+    Estudante de Ciência da Computação na UNIVALI. Experiência em suporte técnico, automação de processos, APIs e dados. Inglês avançado, sempre aprendendo.
+  </p>
+  <div class="hero-links">
+    <a class="btn btn-primary" href="#projetos">Ver projetos</a>
+    <a class="btn btn-ghost" href="https://github.com/henriquehce" target="_blank">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+      GitHub
+    </a>
+    <a class="btn btn-ghost" href="https://www.linkedin.com/in/henriquecipriani/" target="_blank">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      LinkedIn
+    </a>
+  </div>
+  <div class="hero-scroll"><span class="scroll-line"></span> Scroll</div>
+</div>
+
+<!-- PROJETOS -->
+<section id="projetos">
+  <div class="section-header reveal">
+    <span class="section-number">01</span>
+    <h2 class="section-title">Projetos</h2>
+    <span class="divider"></span>
+  </div>
+  <div class="projects-grid reveal">
+
+    <a class="project-card" href="https://github.com/henriquehce" target="_blank">
+      <div class="project-tag-row">
+        <span class="ptag featured">Destaque</span>
+        <span class="ptag">Web App</span>
+        <span class="ptag">Full-stack</span>
+      </div>
+      <h3 class="project-title">TaskFlow</h3>
+      <p class="project-desc">Sistema completo de gerenciamento de tarefas com dark mode, filtros por responsável e status, prioridades, tickets, changelog e painel de administração multi-usuário.</p>
+      <div class="project-footer">
+        <div class="project-stack">
+          <span class="stack-dot">React</span><span class="stack-dot">·</span>
+          <span class="stack-dot">Node.js</span><span class="stack-dot">·</span>
+          <span class="stack-dot">MySQL</span>
+        </div>
+        <span class="project-link-label">GitHub →</span>
+      </div>
+    </a>
+
+    <a class="project-card" href="https://henriquehce.github.io/Cinema/" target="_blank">
+      <div class="project-tag-row">
+        <span class="ptag">Web</span>
+        <span class="ptag">Live</span>
+      </div>
+      <h3 class="project-title">Tudo Sobre Cinema</h3>
+      <p class="project-desc">Site editorial sobre o universo do cinema: filmes, gêneros, história e curiosidades. Interface responsiva com navegação por categorias. Hospedado no GitHub Pages.</p>
+      <div class="project-footer">
+        <div class="project-stack">
+          <span class="stack-dot">HTML5</span><span class="stack-dot">·</span>
+          <span class="stack-dot">CSS3</span><span class="stack-dot">·</span>
+          <span class="stack-dot">JavaScript</span>
+        </div>
+        <span class="project-link-label">Acessar →</span>
+      </div>
+    </a>
+
+    <a class="project-card" href="https://github.com/henriquehce" target="_blank">
+      <div class="project-tag-row">
+        <span class="ptag">Data Science</span>
+        <span class="ptag">IA</span>
+        <span class="ptag">Acadêmico</span>
+      </div>
+      <h3 class="project-title">KDD — Unidades de Conservação SC</h3>
+      <p class="project-desc">Processo KDD aplicado à análise das Unidades de Conservação em Santa Catarina. Clustering K-Means, geoprocessamento com GeoPandas (IBGE) e análise estatística com SciPy.</p>
+      <div class="project-footer">
+        <div class="project-stack">
+          <span class="stack-dot">Python</span><span class="stack-dot">·</span>
+          <span class="stack-dot">scikit-learn</span><span class="stack-dot">·</span>
+          <span class="stack-dot">GeoPandas</span>
+        </div>
+        <span class="project-link-label">GitHub →</span>
+      </div>
+    </a>
+
+    <a class="project-card" href="https://github.com/henriquehce" target="_blank">
+      <div class="project-tag-row">
+        <span class="ptag">Game</span>
+        <span class="ptag">Python</span>
+      </div>
+      <h3 class="project-title">Sokoban</h3>
+      <p class="project-desc">Implementação do clássico puzzle Sokoban em Python. O jogador empurra caixas até posições-alvo num grid, com lógica de colisão, estados e verificação de vitória.</p>
+      <div class="project-footer">
+        <div class="project-stack">
+          <span class="stack-dot">Python</span><span class="stack-dot">·</span>
+          <span class="stack-dot">Pygame</span>
+        </div>
+        <span class="project-link-label">GitHub →</span>
+      </div>
+    </a>
+
+    <a class="project-card" href="https://github.com/henriquehce/Godot2DGame" target="_blank">
+      <div class="project-tag-row">
+        <span class="ptag">Game</span>
+        <span class="ptag">Godot</span>
+      </div>
+      <h3 class="project-title">Plataformer 2D — Godot</h3>
+      <p class="project-desc">Jogo de plataforma 2D com 3 fases completas desenvolvido na Godot Engine. Mecânicas de pulo, colisão e progressão de fases com arte e física personalizadas em GDScript.</p>
+      <div class="project-footer">
+        <div class="project-stack">
+          <span class="stack-dot">Godot Engine</span><span class="stack-dot">·</span>
+          <span class="stack-dot">GDScript</span>
+        </div>
+        <span class="project-link-label">GitHub →</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header reveal">
+    <span class="section-number">02</span>
+    <h2 class="section-title">Habilidades</h2>
+    <span class="divider"></span>
+  </div>
+  <div class="skills-layout reveal">
+    <div>
+      <p class="skill-group-title">Linguagens</p>
+      <div class="skill-bars" id="skill-bars">
+        <div class="skill-bar-item">
+          <div class="skill-bar-top"><span class="skill-bar-name">Python</span><span class="skill-bar-pct">90%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-w="90"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-top"><span class="skill-bar-name">HTML / CSS</span><span class="skill-bar-pct">80%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-w="80"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-top"><span class="skill-bar-name">JavaScript</span><span class="skill-bar-pct">75%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-w="75"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-top"><span class="skill-bar-name">SQL</span><span class="skill-bar-pct">70%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-w="70"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-top"><span class="skill-bar-name">R</span><span class="skill-bar-pct">55%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-w="55"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-top"><span class="skill-bar-name">C / C++</span><span class="skill-bar-pct">50%</span></div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-w="50"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:2rem;">
+      <div>
+        <p class="skill-group-title">Dados & IA</p>
+        <div class="tags-cloud">
+          <span class="cloud-tag">NumPy</span><span class="cloud-tag">Pandas</span>
+          <span class="cloud-tag">scikit-learn</span><span class="cloud-tag">TensorFlow</span>
+          <span class="cloud-tag">OpenCV</span><span class="cloud-tag">Matplotlib</span>
+          <span class="cloud-tag">Seaborn</span><span class="cloud-tag">GeoPandas</span>
+          <span class="cloud-tag">SciPy</span>
+        </div>
+      </div>
+      <div>
+        <p class="skill-group-title">Ferramentas & Plataformas</p>
+        <div class="tags-cloud">
+          <span class="cloud-tag">Git</span><span class="cloud-tag">Postman</span>
+          <span class="cloud-tag">Salesforce CRM</span><span class="cloud-tag">Asterisk PBX</span>
+          <span class="cloud-tag">360dialog</span><span class="cloud-tag">Google Colab</span>
+          <span class="cloud-tag">MySQL</span><span class="cloud-tag">SQLite</span>
+          <span class="cloud-tag">Godot Engine</span>
+        </div>
+      </div>
+      <div>
+        <p class="skill-group-title">Idiomas</p>
+        <div class="tags-cloud">
+          <span class="cloud-tag">Português — Nativo</span>
+          <span class="cloud-tag">Inglês — Avançado</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIÊNCIA -->
+<section id="experiencia">
+  <div class="section-header reveal">
+    <span class="section-number">03</span>
+    <h2 class="section-title">Experiência</h2>
+    <span class="divider"></span>
+  </div>
+  <div>
+    <div class="exp-entry reveal">
+      <div class="exp-date">2024 – 2025<br>Balneário Camboriú<br>Presencial</div>
+      <div>
+        <p class="exp-role">Técnico de Suporte de TI</p>
+        <p class="exp-company">Syngoo Tecnologia LTDA</p>
+        <ul class="exp-points">
+          <li>Suporte técnico N1, N2 e N3 — incidentes, implantações e demandas complexas</li>
+          <li>Integração e manutenção de APIs REST: WhatsApp Business, Meta, 360dialog</li>
+          <li>Automação de processos internos com Python e JavaScript</li>
+          <li>Configuração de PABX Asterisk: ramais, SIP peers, macros e Caller-ID</li>
+          <li>Gestão de tickets e clientes via Salesforce CRM</li>
+          <li>Apresentações técnicas e reuniões com clientes</li>
+        </ul>
+      </div>
+    </div>
+    <div class="exp-entry reveal">
+      <div class="exp-date">2023<br>Remoto</div>
+      <div>
+        <p class="exp-role">Documentador Técnico de Software</p>
+        <p class="exp-company">Instivo Tecnologia</p>
+        <ul class="exp-points">
+          <li>Criação e padronização de documentação técnica interna</li>
+          <li>Tutoriais, fluxos de processo e descrição de endpoints</li>
+          <li>Colaboração direta com desenvolvedores</li>
+        </ul>
+      </div>
+    </div>
+    <div class="exp-entry reveal">
+      <div class="exp-date">2021<br>Balneário Camboriú</div>
+      <div>
+        <p class="exp-role">Operador de Caixa</p>
+        <p class="exp-company">Koch Supermercados</p>
+        <ul class="exp-points">
+          <li>Atendimento ao cliente e operação de caixa</li>
+          <li>Apoio em reposição e controle de estoque</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CURSOS -->
+<section>
+  <div class="section-header reveal">
+    <span class="section-number">04</span>
+    <h2 class="section-title">Cursos & Certificações</h2>
+    <span class="divider"></span>
+  </div>
+  <div class="courses-grid reveal">
+    <div class="course-cell"><p class="course-cell-name">Engenharia de Software: Princípios Básicos</p><p class="course-cell-meta">Alura · abr/2026</p></div>
+    <div class="course-cell"><p class="course-cell-name">UX Design & Carreira UI Design</p><p class="course-cell-meta">Alura · abr/2026</p></div>
+    <div class="course-cell"><p class="course-cell-name">Git e GitHub: Colaborando em Projetos</p><p class="course-cell-meta">Alura · fev/2026</p></div>
+    <div class="course-cell"><p class="course-cell-name">Trilha Python — OOP, dados, IA aplicada</p><p class="course-cell-meta">Alura · 2026</p></div>
+    <div class="course-cell"><p class="course-cell-name">Data Science: Análise, Viz & Storytelling</p><p class="course-cell-meta">Alura · 2026</p></div>
+    <div class="course-cell"><p class="course-cell-name">Estatística com Python</p><p class="course-cell-meta">Alura · fev/2026</p></div>
+    <div class="course-cell"><p class="course-cell-name">Excel: Editor de Planilhas</p><p class="course-cell-meta">Alura · 2026</p></div>
+    <div class="course-cell"><p class="course-cell-name">SQL com MySQL e SQLite</p><p class="course-cell-meta">Alura · 2023–2026</p></div>
+    <div class="course-cell"><p class="course-cell-name">Programação em Python</p><p class="course-cell-meta">Udemy · 2024</p></div>
+    <div class="course-cell"><p class="course-cell-name">HTML5</p><p class="course-cell-meta">Udemy · 2024</p></div>
+    <div class="course-cell"><p class="course-cell-name">Python: IA Aplicada</p><p class="course-cell-meta">Alura · fev/2026</p></div>
+    <div class="course-cell"><p class="course-cell-name">Agilidade, TDD e Kanban</p><p class="course-cell-meta">Alura · 2023</p></div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato">
+  <div class="section-header reveal">
+    <span class="section-number">05</span>
+    <h2 class="section-title">Contato</h2>
+    <span class="divider"></span>
+  </div>
+  <div class="contact-grid reveal">
+    <div>
+      <p class="contact-tagline">Aberto a oportunidades<br><em>em qualquer área ou nível</em></p>
+      <div class="contact-items">
+        <div class="contact-item">
+          <svg class="contact-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+          <div><p class="contact-label">E-mail</p><p class="contact-value">henriquecipriani@gmail.com</p></div>
+        </div>
+        <div class="contact-item">
+          <svg class="contact-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.91a16 16 0 006.29 6.29l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          <div><p class="contact-label">Telefone</p><p class="contact-value">(47) 99238-5256</p></div>
+        </div>
+        <div class="contact-item">
+          <svg class="contact-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div><p class="contact-label">Localização</p><p class="contact-value">Balneário Camboriú – SC</p></div>
+        </div>
+        <div class="contact-item">
+          <svg class="contact-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          <div><p class="contact-label">Formação</p><p class="contact-value">Ciência da Computação — UNIVALI (2023–atual)</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-right">
+      <a class="contact-social" href="https://github.com/henriquehce" target="_blank">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+        github.com/henriquehce
+      </a>
+      <a class="contact-social" href="https://www.linkedin.com/in/henriquecipriani/" target="_blank">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        linkedin.com/in/henriquecipriani
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>Henrique Cipriani Ertal · 2026</span>
+  <span>Balneário Camboriú – SC</span>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => obs.observe(el));
+
+  const barObs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
+          bar.style.width = bar.dataset.w + '%';
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+  const skillBars = document.getElementById('skill-bars');
+  if (skillBars) barObs.observe(skillBars);
+</script>
+</body>
+</html>
