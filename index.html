@@ -1,1298 +1,380 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-
-<head>
-
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>Henrique Cipriani — Portfólio</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
-
-  <style>
-
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-    }
-
-    :root{
-
-      --bg:#0b0c0f;
-      --bg2:#111318;
-      --bg3:#181a20;
-
-      --line:rgba(255,255,255,0.08);
-      --line2:rgba(255,255,255,0.14);
-
-      --text:#e8e6e0;
-      --muted:#8a8880;
-      --faint:#4d4b47;
-
-      --accent:#3a7bd5;
-      --accent2:#5b9cf6;
-
-      --font-display:'Syne',sans-serif;
-      --font-body:'DM Sans',sans-serif;
-
-    }
-
-    html{
-      scroll-behavior:smooth;
-    }
-
-    body{
-      background:var(--bg);
-      color:var(--text);
-      font-family:var(--font-body);
-      overflow-x:hidden;
-    }
-
-    img,
-    video{
-      display:block;
-      width:100%;
-    }
-
-    a{
-      text-decoration:none;
-      color:inherit;
-    }
-
-    /* NAV */
-
-    nav{
-
-      position:fixed;
-      top:0;
-      left:0;
-      right:0;
-
-      height:70px;
-
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-
-      padding:0 3rem;
-
-      z-index:1000;
-
-      backdrop-filter:blur(16px);
-      background:rgba(11,12,15,0.86);
-
-      border-bottom:1px solid var(--line);
-
-    }
-
-    .nav-logo{
-
-      font-family:var(--font-display);
-      font-weight:800;
-      font-size:1rem;
-
-    }
-
-    .nav-logo span{
-      color:var(--accent2);
-    }
-
-    .nav-links{
-
-      display:flex;
-      gap:2rem;
-
-      list-style:none;
-
-    }
-
-    .nav-links a{
-
-      font-size:13px;
-      color:var(--muted);
-
-      transition:.2s;
-
-      text-transform:uppercase;
-      letter-spacing:.08em;
-
-    }
-
-    .nav-links a:hover{
-      color:white;
-    }
-
-    /* HERO */
-
-    .hero{
-
-      min-height:100vh;
-
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-
-      max-width:1200px;
-      margin:auto;
-
-      padding:0 3rem;
-
-    }
-
-    .hero-eyebrow{
-
-      color:var(--accent2);
-
-      text-transform:uppercase;
-      letter-spacing:.2em;
-
-      font-size:12px;
-
-      margin-bottom:1.5rem;
-
-      animation:fadeUp .7s forwards;
-
-    }
-
-    .hero-name{
-
-      font-family:var(--font-display);
-
-      font-size:clamp(3.5rem,10vw,7rem);
-
-      line-height:.95;
-      letter-spacing:-.05em;
-
-      margin-bottom:1.5rem;
-
-      opacity:0;
-      animation:fadeUp .7s .1s forwards;
-
-    }
-
-    .hero-name .dim{
-      color:var(--muted);
-      font-weight:400;
-    }
-
-    .hero-desc{
-
-      max-width:700px;
-
-      color:var(--muted);
-
-      line-height:1.8;
-      font-size:1.05rem;
-
-      margin-bottom:2rem;
-
-      opacity:0;
-      animation:fadeUp .7s .2s forwards;
-
-    }
-
-    .hero-links{
-
-      display:flex;
-      gap:12px;
-      flex-wrap:wrap;
-
-      opacity:0;
-      animation:fadeUp .7s .3s forwards;
-
-    }
-
-    .btn{
-
-      display:flex;
-      align-items:center;
-      gap:8px;
-
-      padding:12px 20px;
-
-      border-radius:8px;
-
-      font-size:13px;
-      font-weight:500;
-
-      transition:.2s;
-
-    }
-
-    .btn-primary{
-
-      background:var(--accent);
-      color:white;
-
-    }
-
-    .btn-primary:hover{
-
-      transform:translateY(-2px);
-      background:var(--accent2);
-
-    }
-
-    .btn-ghost{
-
-      border:1px solid var(--line2);
-      color:var(--muted);
-
-    }
-
-    .btn-ghost:hover{
-
-      border-color:var(--accent2);
-      color:white;
-
-    }
-
-    /* SECTIONS */
-
-    section{
-
-      max-width:1200px;
-      margin:auto;
-
-      padding:6rem 3rem;
-
-    }
-
-    .section-header{
-
-      display:flex;
-      align-items:center;
-      gap:1.5rem;
-
-      margin-bottom:3rem;
-
-    }
-
-    .section-number{
-
-      font-size:11px;
-
-      color:var(--accent2);
-
-      letter-spacing:.2em;
-      text-transform:uppercase;
-
-    }
-
-    .section-title{
-
-      font-family:var(--font-display);
-
-      font-size:2rem;
-
-      letter-spacing:-.03em;
-
-    }
-
-    .divider{
-
-      flex:1;
-      height:1px;
-
-      background:var(--line);
-
-    }
-
-    /* PROJECTS */
-
-    .projects-grid{
-
-      display:grid;
-
-      grid-template-columns:repeat(2,1fr);
-
-      gap:24px;
-
-    }
-
-    .project-card{
-
-      background:var(--bg2);
-
-      border:1px solid var(--line);
-
-      border-radius:18px;
-
-      overflow:hidden;
-
-      transition:.25s;
-
-      display:flex;
-      flex-direction:column;
-
-    }
-
-    .project-card:hover{
-
-      transform:translateY(-5px);
-
-      border-color:rgba(91,156,246,.25);
-
-      background:var(--bg3);
-
-    }
-
-    .project-image{
-
-      height:260px;
-      object-fit:cover;
-
-    }
-
-    .project-video{
-
-      height:260px;
-
-      object-fit:contain;
-
-      background:black;
-
-    }
-
-    .project-content{
-
-      padding:1.5rem;
-
-      display:flex;
-      flex-direction:column;
-
-      gap:14px;
-
-      flex:1;
-
-    }
-
-    .project-tag-row{
-
-      display:flex;
-      flex-wrap:wrap;
-
-      gap:8px;
-
-    }
-
-    .ptag{
-
-      font-size:11px;
-
-      padding:4px 9px;
-
-      border-radius:5px;
-
-      border:1px solid var(--line2);
-
-      color:var(--muted);
-
-    }
-
-    .ptag.featured{
-
-      color:var(--accent2);
-
-      border-color:rgba(91,156,246,.35);
-
-      background:rgba(91,156,246,.08);
-
-    }
-
-    .project-title{
-
-      font-family:var(--font-display);
-
-      font-size:1.3rem;
-
-      letter-spacing:-.02em;
-
-    }
-
-    .project-desc{
-
-      color:var(--muted);
-
-      line-height:1.7;
-
-      font-size:14px;
-
-      flex:1;
-
-    }
-
-    .project-footer{
-
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-
-    }
-
-    .project-stack{
-
-      display:flex;
-      gap:6px;
-      flex-wrap:wrap;
-
-      font-size:12px;
-
-      color:var(--faint);
-
-    }
-
-    .project-link-label{
-
-      color:var(--accent2);
-
-      font-size:13px;
-
-    }
-
-    /* CERTIFICADOS */
-
-    .cert-grid{
-
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-
-      gap:18px;
-
-    }
-
-    .cert-card{
-
-      background:var(--bg2);
-
-      border:1px solid var(--line);
-
-      border-radius:14px;
-
-      padding:1.3rem;
-
-      transition:.2s;
-
-    }
-
-    .cert-card:hover{
-
-      background:var(--bg3);
-
-      border-color:rgba(91,156,246,.25);
-
-      transform:translateY(-3px);
-
-    }
-
-    .cert-card h3{
-
-      font-size:15px;
-
-      margin-bottom:10px;
-
-      line-height:1.5;
-
-    }
-
-    .cert-card p{
-
-      color:var(--muted);
-
-      font-size:13px;
-
-      line-height:1.6;
-
-    }
-
-    /* ESTUDANDO */
-
-    .study-grid{
-
-      display:grid;
-
-      grid-template-columns:repeat(4,1fr);
-
-      gap:18px;
-
-    }
-
-    .study-card{
-
-      background:linear-gradient(
-        145deg,
-        rgba(58,123,213,.08),
-        rgba(255,255,255,.02)
-      );
-
-      border:1px solid rgba(91,156,246,.2);
-
-      border-radius:16px;
-
-      padding:1.5rem;
-
-    }
-
-    .study-card span{
-
-      font-size:11px;
-
-      color:var(--accent2);
-
-      text-transform:uppercase;
-
-      letter-spacing:.15em;
-
-    }
-
-    .study-card h3{
-
-      margin-top:12px;
-
-      font-size:1.05rem;
-
-      line-height:1.4;
-
-    }
-
-    /* CONTACT */
-
-    .contact-grid{
-
-      display:grid;
-      grid-template-columns:1fr 1fr;
-
-      gap:3rem;
-
-    }
-
-    .contact-tagline{
-
-      font-family:var(--font-display);
-
-      font-size:2rem;
-
-      line-height:1.2;
-
-      margin-bottom:2rem;
-
-    }
-
-    .contact-tagline em{
-
-      color:var(--muted);
-
-      font-style:normal;
-      font-weight:400;
-
-    }
-
-    .contact-items{
-
-      display:flex;
-      flex-direction:column;
-
-      gap:1rem;
-
-    }
-
-    .contact-item{
-
-      display:flex;
-      flex-direction:column;
-
-      gap:4px;
-
-    }
-
-    .contact-label{
-
-      font-size:12px;
-
-      color:var(--faint);
-
-      text-transform:uppercase;
-
-      letter-spacing:.08em;
-
-    }
-
-    .contact-value{
-
-      font-size:15px;
-
-    }
-
-    .contact-right{
-
-      display:flex;
-      flex-direction:column;
-
-      gap:14px;
-
-    }
-
-    .contact-social{
-
-      border:1px solid var(--line2);
-
-      border-radius:10px;
-
-      padding:1rem 1.2rem;
-
-      transition:.2s;
-
-      color:var(--muted);
-
-    }
-
-    .contact-social:hover{
-
-      background:var(--bg2);
-
-      border-color:var(--accent2);
-
-      color:white;
-
-    }
-
-    /* FOOTER */
-
-    footer{
-
-      border-top:1px solid var(--line);
-
-      padding:2rem 3rem;
-
-      max-width:1200px;
-      margin:auto;
-
-      display:flex;
-      justify-content:space-between;
-
-      font-size:12px;
-
-      color:var(--faint);
-
-    }
-
-    /* ANIMATIONS */
-
-    @keyframes fadeUp{
-
-      from{
-        opacity:0;
-        transform:translateY(20px);
-      }
-
-      to{
-        opacity:1;
-        transform:none;
-      }
-
-    }
-
-    .reveal{
-
-      opacity:0;
-
-      transform:translateY(24px);
-
-      transition:.8s;
-
-    }
-
-    .reveal.visible{
-
-      opacity:1;
-      transform:none;
-
-    }
-
-    /* MOBILE */
-
-    @media(max-width:900px){
-
-      .projects-grid,
-      .cert-grid,
-      .study-grid,
-      .contact-grid{
-
-        grid-template-columns:1fr;
-
-      }
-
-    }
-
-    @media(max-width:768px){
-
-      nav{
-        padding:0 1.5rem;
-      }
-
-      .nav-links{
-        display:none;
-      }
-
-      section,
-      .hero{
-        padding-left:1.5rem;
-        padding-right:1.5rem;
-      }
-
-      footer{
-
-        flex-direction:column;
-        gap:8px;
-
-      }
-
-    }
-
-  </style>
-
-</head>
-
-<body>
-
-  <!-- NAV -->
-
-  <nav>
-
-    <a href="#" class="nav-logo">
-      HCE<span>.</span>
-    </a>
-
-    <ul class="nav-links">
-
-      <li><a href="#projetos">Projetos</a></li>
-      <li><a href="#certificados">Certificados</a></li>
-      <li><a href="#contato">Contato</a></li>
-
-    </ul>
-
-  </nav>
-
-  <!-- HERO -->
-
-  <div class="hero">
-
-    <p class="hero-eyebrow">
-      Portfólio · Balneário Camboriú – SC
-    </p>
-
-    <h1 class="hero-name">
-      Henrique<br>
-      <span class="dim">Cipriani</span>
-    </h1>
-
-    <p class="hero-desc">
-
-      Estudante de Ciência da Computação na UNIVALI.
-      Experiência em automação, APIs, suporte técnico,
-      desenvolvimento web, dados e aplicações mobile.
-
-    </p>
-
-    <div class="hero-links">
-
-      <a class="btn btn-primary" href="#projetos">
-        Ver projetos
-      </a>
-
-      <a class="btn btn-ghost"
-         href="https://github.com/henriquehce"
-         target="_blank">
-
-        GitHub
-
-      </a>
-
-      <a class="btn btn-ghost"
-         href="https://www.linkedin.com/in/henriquecipriani/"
-         target="_blank">
-
-        LinkedIn
-
-      </a>
-
-      <a class="btn btn-ghost"
-         href="Henrique_Cipriani_CV.pdf"
-         download>
-
-        Download CV
-
-      </a>
-
-    </div>
-
-  </div>
-
-  <!-- PROJETOS -->
-
-  <section id="projetos">
-
-    <div class="section-header reveal">
-
-      <span class="section-number">01</span>
-
-      <h2 class="section-title">
-        Projetos
-      </h2>
-
-      <span class="divider"></span>
-
-    </div>
-
-    <div class="projects-grid reveal">
-
-      <!-- CARD 1 -->
-
-      <a class="project-card"
-         href="https://henriquehce.github.io/Cinema/"
-         target="_blank">
-
-        <img src="assets/tudo_sobre_cinema.png"
-             class="project-image">
-
-        <div class="project-content">
-
-          <div class="project-tag-row">
-
-            <span class="ptag featured">Live</span>
-            <span class="ptag">HTML</span>
-            <span class="ptag">CSS</span>
-            <span class="ptag">JavaScript</span>
-
-          </div>
-
-          <h3 class="project-title">
-            Tudo Sobre Cinema
-          </h3>
-
-          <p class="project-desc">
-
-            Site editorial responsivo inspirado em portais
-            de cinema e entretenimento.
-
-          </p>
-
-          <div class="project-footer">
-
-            <div class="project-stack">
-              <span>GitHub Pages</span>
-            </div>
-
-            <span class="project-link-label">
-              Acessar →
-            </span>
-
-          </div>
-
-        </div>
-
-      </a>
-
-      <!-- CARD 2 -->
-
-      <a class="project-card"
-         href="https://github.com/henriquehce/Godot2DGame"
-         target="_blank">
-
-        <img src="assets/godot_game.png"
-             class="project-image">
-
-        <div class="project-content">
-
-          <div class="project-tag-row">
-
-            <span class="ptag featured">Game</span>
-            <span class="ptag">Godot</span>
-            <span class="ptag">GDScript</span>
-
-          </div>
-
-          <h3 class="project-title">
-            Platformer 2D
-          </h3>
-
-          <p class="project-desc">
-
-            Jogo de plataforma 2D desenvolvido na Godot
-            com múltiplas fases e progressão.
-
-          </p>
-
-          <div class="project-footer">
-
-            <div class="project-stack">
-              <span>Godot Engine</span>
-            </div>
-
-            <span class="project-link-label">
-              GitHub →
-            </span>
-
-          </div>
-
-        </div>
-
-      </a>
-
-      <!-- CARD 3 -->
-
-      <a class="project-card"
-         href="https://github.com/henriquehce/agar-app"
-         target="_blank">
-
-        <img src="assets/transporte.png"
-             class="project-image">
-
-        <div class="project-content">
-
-          <div class="project-tag-row">
-
-            <span class="ptag featured">Mobile</span>
-            <span class="ptag">Laravel</span>
-            <span class="ptag">React Native</span>
-
-          </div>
-
-          <h3 class="project-title">
-            Transporte Universitário
-          </h3>
-
-          <p class="project-desc">
-
-            Sistema para gestão de transporte universitário,
-            rotas, alunos e motoristas.
-
-          </p>
-
-          <div class="project-footer">
-
-            <div class="project-stack">
-              <span>API REST</span>
-            </div>
-
-            <span class="project-link-label">
-              GitHub →
-            </span>
-
-          </div>
-
-        </div>
-
-      </a>
-
-      <!-- CARD 4 -->
-
-      <a class="project-card" href="#">
-
-        <video class="project-video"
-               autoplay
-               muted
-               loop
-               playsinline>
-
-          <source src="assets/tcc_video_exemplo.mp4"
-                  type="video/mp4">
-
-        </video>
-
-        <div class="project-content">
-
-          <div class="project-tag-row">
-
-            <span class="ptag featured">TCC</span>
-            <span class="ptag">React Native</span>
-            <span class="ptag">Firebase</span>
-
-          </div>
-
-          <h3 class="project-title">
-            AGAR — Apoio Gestacional
-          </h3>
-
-          <p class="project-desc">
-
-            Aplicativo para apoio e monitoramento de
-            gestantes de alto risco do Ambulatório AGAR.
-
-          </p>
-
-          <div class="project-footer">
-
-            <div class="project-stack">
-              <span>UNIVALI</span>
-            </div>
-
-            <span class="project-link-label">
-              Em desenvolvimento
-            </span>
-
-          </div>
-
-        </div>
-
-      </a>
-
-    </div>
-
-  </section>
-
-  <!-- CERTIFICADOS -->
-
-  <section id="certificados">
-
-    <div class="section-header reveal">
-
-      <span class="section-number">02</span>
-
-      <h2 class="section-title">
-        Certificados & Cursos
-      </h2>
-
-      <span class="divider"></span>
-
-    </div>
-
-    <div class="cert-grid reveal">
-
-      <div class="cert-card">
-        <h3>PHP — Orientação a Objetos</h3>
-        <p>Alura · PHP moderno, arquitetura e organização de código.</p>
-      </div>
-
-      <div class="cert-card">
-        <h3>Python — IA Aplicada</h3>
-        <p>Alura · Inteligência Artificial e automação com Python.</p>
-      </div>
-
-      <div class="cert-card">
-        <h3>Git & GitHub</h3>
-        <p>Versionamento, colaboração e fluxo profissional.</p>
-      </div>
-
-      <div class="cert-card">
-        <h3>Data Science</h3>
-        <p>Análise de dados, storytelling e visualização.</p>
-      </div>
-
-      <div class="cert-card">
-        <h3>SQL & SQLite</h3>
-        <p>Consultas SQL, joins, views e transações.</p>
-      </div>
-
-      <div class="cert-card">
-        <h3>UX/UI Design</h3>
-        <p>Experiência do usuário e interfaces digitais.</p>
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- ESTUDANDO -->
-
-  <section id="estudando">
-
-    <div class="section-header reveal">
-
-      <span class="section-number">03</span>
-
-      <h2 class="section-title">
-        Atualmente estudando
-      </h2>
-
-      <span class="divider"></span>
-
-    </div>
-
-    <div class="study-grid reveal">
-
-      <div class="study-card">
-
-        <span>2026</span>
-
-        <h3>
-          PHP Back-end
-        </h3>
-
-      </div>
-
-      <div class="study-card">
-
-        <span>2026</span>
-
-        <h3>
-          Engenharia & Análise de Dados
-        </h3>
-
-      </div>
-
-      <div class="study-card">
-
-        <span>2026</span>
-
-        <h3>
-          Computação em Nuvem
-        </h3>
-
-      </div>
-
-      <div class="study-card">
-
-        <span>2026</span>
-
-        <h3>
-          Engenharia de IA
-        </h3>
-
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- CONTATO -->
-
-  <section id="contato">
-
-    <div class="section-header reveal">
-
-      <span class="section-number">04</span>
-
-      <h2 class="section-title">
-        Contato
-      </h2>
-
-      <span class="divider"></span>
-
-    </div>
-
-    <div class="contact-grid reveal">
-
-      <div>
-
-        <p class="contact-tagline">
-
-          Aberto a oportunidades<br>
-          <em>em tecnologia e desenvolvimento</em>
-
-        </p>
-
-        <div class="contact-items">
-
-          <div class="contact-item">
-
-            <span class="contact-label">
-              E-mail
-            </span>
-
-            <span class="contact-value">
-              henriquecipriani@gmail.com
-            </span>
-
-          </div>
-
-          <div class="contact-item">
-
-            <span class="contact-label">
-              Telefone
-            </span>
-
-            <span class="contact-value">
-              (47) 99238-5256
-            </span>
-
-          </div>
-
-          <div class="contact-item">
-
-            <span class="contact-label">
-              Formação
-            </span>
-
-            <span class="contact-value">
-              Ciência da Computação — UNIVALI
-            </span>
-
-          </div>
-
-        </div>
-
-      </div>
-
-      <div class="contact-right">
-
-        <a class="contact-social"
-           href="https://github.com/henriquehce"
-           target="_blank">
-
-          github.com/henriquehce
-
-        </a>
-
-        <a class="contact-social"
-           href="https://www.linkedin.com/in/henrique-cipriani-9b006b173/"
-           target="_blank">
-
-          linkedin.com/in/henriquecipriani
-
-        </a>
-
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- FOOTER -->
-
-  <footer>
-
-    <span>
-      Henrique Cipriani · 2026
-    </span>
-
-    <span>
-      Balneário Camboriú — SC
-    </span>
-
-  </footer>
-
-  <!-- SCRIPT -->
-
-  <script>
-
-    const reveals = document.querySelectorAll('.reveal');
-
-    const observer = new IntersectionObserver(entries => {
-
-      entries.forEach(entry => {
-
-        if(entry.isIntersecting){
-
-          entry.target.classList.add('visible');
-
-        }
-
-      });
-
-    },{
-      threshold:0.08
-    });
-
-    reveals.forEach(el => observer.observe(el));
-
-  </script>
-
-</body>
-
-</html>
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Henrique Cipriani</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Desenvolvedor e co-founder da Vynex Systems. Sou desenvolvedor, co-founder da Vynex Systems e estudante de Ciência da Computação na UNIVALI, em Itajaí. Trabalho com ">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: canvas claro da Vynex; hero 6/6 com telas reais empilhadas; faixa preta de números; cases em abas; bento da Vynex. */
+:root{--bg:#F6F6F4;--panel:#FFFFFF;--soft:#EFEFED;--fg:#141414;--muted:#5F5F5B;--line:#E2E2DF;--accent:#F97316;--accent-ink:#C2410C;--on-accent:#140A02;--slab:#141414;--slab-fg:#F6F6F4;--ok:#1FAA6B;
+--f-display:'Bricolage Grotesque',ui-sans-serif,system-ui,sans-serif;--f-body:'IBM Plex Sans',ui-sans-serif,system-ui,sans-serif;--hw:800;--scale:1;--space:1;--radius:999px;--ease:cubic-bezier(.16,1,.3,1);color-scheme:light}
+*{box-sizing:border-box;margin:0;padding:0} html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{background:var(--bg);color:var(--fg);font:400 17px/1.6 var(--f-body);-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:40;background:var(--bg)}
+::selection{background:var(--accent);color:var(--on-accent)} a{color:inherit} :focus-visible{outline:2px solid var(--accent-ink);outline-offset:3px;border-radius:6px}
+img{display:block;max-width:100%;height:auto} [hidden]{display:none!important}
+.w{max-width:1240px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--f-display);font-weight:var(--hw);letter-spacing:-.04em;line-height:.98;text-wrap:balance}
+h2{font-size:calc(clamp(34px,4.6vw,62px)*var(--scale))}
+section{padding-block:calc(clamp(72px,10vw,136px)*var(--space))}
+.sub{color:var(--muted);max-width:52ch;margin-top:16px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 20px;border-radius:var(--radius);font-weight:600;text-decoration:none;transition:background .25s,color .25s,transform .25s var(--ease)}
+.btn:active{transform:scale(.98)}
+.btn.p{background:var(--fg);color:var(--bg)} .btn.p:hover{background:var(--accent);color:var(--on-accent)}
+.btn.g{box-shadow:inset 0 0 0 1.5px var(--fg)} .btn.g:hover{background:var(--fg);color:var(--bg)}
+/* nav */
+nav.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:saturate(1.4) blur(12px);-webkit-backdrop-filter:saturate(1.4) blur(12px);transition:box-shadow .3s}
+nav.top.scrolled{box-shadow:0 1px 0 var(--line)}
+nav.top .w{display:flex;align-items:center;gap:24px;height:72px}
+nav.top .nm{font:700 19px var(--f-display);letter-spacing:-.03em;text-decoration:none;display:flex;align-items:center;gap:10px}
+nav.top .nm i{width:9px;height:9px;border-radius:50%;background:var(--accent)}
+nav.top .links{display:flex;gap:4px;margin-left:auto;font-size:15px}
+nav.top .links a{text-decoration:none;color:var(--muted);padding:8px 12px;border-radius:999px;transition:color .2s,background .2s}
+nav.top .links a:hover{color:var(--fg)} nav.top .links a.on{color:var(--fg);background:var(--soft)}
+/* hero */
+.hero{padding-block:clamp(40px,6vw,88px) clamp(72px,9vw,120px);overflow:hidden}
+.hero .w{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,6fr);gap:clamp(32px,5vw,72px);align-items:center}
+.hero h1{font-size:calc(clamp(52px,7vw,108px)*var(--scale));letter-spacing:-.05em}
+.hero h1 em{font-style:normal;color:var(--accent-ink)}
+.wd{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.08em;margin-bottom:-.08em}
+.wd>span{display:inline-block;animation:rise .9s var(--ease) both}
+@keyframes rise{from{transform:translateY(105%)}to{transform:none}}
+.hero p.lead{font-size:clamp(18px,1.5vw,20px);max-width:46ch;margin-top:26px;color:#33332F}
+.facts{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
+.facts li{display:flex;align-items:center;gap:8px;font-size:14px;padding:7px 12px;border-radius:999px;background:var(--panel);box-shadow:inset 0 0 0 1px var(--line)}
+.facts li b{font-weight:600} .facts li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.hero .cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:30px}
+.stack{position:relative;aspect-ratio:5/4;max-width:100%}
+.stack .shot{position:absolute;width:86%;transition:transform .8s var(--ease)}
+.stack .s1{top:0;right:0;transform:rotate(2.5deg)}
+.stack .s2{left:0;top:30%;transform:rotate(-2deg)}
+.stack:hover .s1{transform:rotate(3.5deg) translate(8px,-8px)} .stack:hover .s2{transform:rotate(-3deg) translate(-8px,6px)}
+.stack .mk-phone{position:absolute;right:2%;bottom:-2%;width:190px;animation:float 7s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-10px)}}
+.hero-in{animation:fadein 1s .25s var(--ease) both} @keyframes fadein{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+/* moldura de tela real */
+.shot{background:var(--panel);border-radius:14px;overflow:hidden;box-shadow:0 0 0 1px var(--line),0 28px 56px -28px rgba(20,20,20,.38)}
+.shot-bar{display:flex;align-items:center;gap:6px;padding:9px 12px;background:var(--panel);border-bottom:1px solid var(--line)}
+.shot-bar i{width:8px;height:8px;border-radius:50%;background:var(--line)}
+.shot-bar span{margin-left:8px;font-size:11.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.shot img{width:100%;aspect-ratio:1100/560;object-fit:cover;object-position:top}
+/* números */
+.slab{background:var(--slab);color:var(--slab-fg)}
+.slab .w{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,6fr);gap:48px;align-items:end;padding-block:clamp(64px,8vw,112px)}
+.fig-main b{display:block;font:800 calc(clamp(110px,16vw,240px)*var(--scale))/.8 var(--f-display);letter-spacing:-.06em;color:var(--accent);font-variant-numeric:tabular-nums}
+.fig-main span{display:block;font-size:clamp(19px,1.8vw,24px);max-width:24ch;margin-top:18px}
+.fig-sub{display:grid;gap:22px}
+.fig-sub div{display:grid;grid-template-columns:96px minmax(0,1fr);align-items:baseline;gap:16px;padding-top:18px;box-shadow:inset 0 1px 0 #333}
+.fig-sub b{font:800 52px/1 var(--f-display);letter-spacing:-.04em;font-variant-numeric:tabular-nums} .fig-sub span{color:#BDBDB7}
+/* cases */
+.tabs{display:inline-flex;gap:4px;flex-wrap:wrap;margin-top:32px;padding:5px;border-radius:999px;background:var(--soft)}
+.tabs button{font:600 15px var(--f-body);padding:10px 18px;border-radius:999px;border:0;background:none;color:var(--muted);cursor:pointer;transition:background .25s,color .25s}
+.tabs button:hover{color:var(--fg)} .tabs button[aria-selected=true]{background:var(--panel);color:var(--fg);box-shadow:0 1px 3px rgba(20,20,20,.12)}
+.panel{margin-top:40px;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,5vw,72px);align-items:start;animation:fadein .6s var(--ease) both}
+.panel h3{font-size:clamp(28px,3vw,40px)} .panel .org{color:var(--muted);font-size:15px;margin-top:10px} .panel .lead{margin-top:18px;max-width:46ch}
+.chipl{list-style:none;display:flex;flex-wrap:wrap;gap:6px;margin-top:22px} .chipl li{font-size:13px;padding:5px 11px;border-radius:999px;box-shadow:inset 0 0 0 1px var(--line);background:var(--panel)}
+.chipl li.hl{background:var(--fg);color:var(--bg);box-shadow:none}
+.dec{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:22px 32px;margin-top:32px}
+.dec b{font:700 18px var(--f-display);letter-spacing:-.02em;display:block} .dec p{color:var(--muted);font-size:15.5px;margin-top:4px}
+.inc{list-style:none;margin-top:14px;background:var(--panel);border-radius:14px;padding:6px 20px}
+.inc li{padding:14px 0} .inc li+li{box-shadow:inset 0 1px 0 var(--line)} .inc b{font-weight:600} .inc p{color:var(--muted);font-size:15px}
+.inc-h{font:700 17px var(--f-display);margin-top:28px}
+.photo{margin-top:28px} .photo img{border-radius:14px;width:100%;aspect-ratio:16/10;object-fit:cover}
+.photo figcaption{font-size:13px;color:var(--muted);margin-top:8px}
+/* vynex */
+.vx-top{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:48px;align-items:end}
+.vx-top p{color:#33332F;max-width:50ch}
+.vx-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 24px;margin-top:48px}
+.vx-card>a{display:block;text-decoration:none;border-radius:14px;transition:transform .5s var(--ease)}
+.vx-card>a:hover{transform:translateY(-6px)}
+.vx-card .shot img{transition:transform .8s var(--ease)} .vx-card>a:hover .shot img{transform:scale(1.025)}
+.vx-meta{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin-top:16px}
+.vx-meta h3{font-size:22px} .vx-meta p{color:var(--muted);font-size:15.5px;margin-top:4px;max-width:46ch}
+.pill{flex:none;font-size:12.5px;font-weight:600;padding:4px 10px;border-radius:999px;background:color-mix(in srgb,var(--ok) 14%,var(--panel));color:#137A4B}
+.pill.new{background:color-mix(in srgb,var(--accent) 16%,var(--panel));color:var(--accent-ink)}
+.svc{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;margin-top:56px;padding-top:32px;box-shadow:inset 0 1px 0 var(--line)}
+.svc b{font:700 18px var(--f-display);display:block} .svc span{font-size:15px;color:var(--muted)}
+/* projetos */
+.prow{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,5vw,72px)}
+.prow>div:first-child{align-self:start;position:sticky;top:100px}
+.plist{list-style:none}
+.plist li{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,2fr) minmax(0,.9fr) 110px;gap:18px;align-items:baseline;padding:18px 10px;margin-inline:-10px;border-radius:10px;box-shadow:inset 0 -1px 0 var(--line);transition:background .25s}
+.plist li:hover{background:var(--panel)}
+.plist h3{font-size:20px;letter-spacing:-.02em} .plist .pst{font-size:13px;color:var(--accent-ink);font-weight:600}
+.plist p{color:#3F3F3B;font-size:15.5px} .plist .tg{font-size:13px;color:var(--muted)} .plist a{font-size:14px;font-weight:600;text-underline-offset:3px;justify-self:end}
+/* sobre */
+.princ{list-style:none;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px;margin-top:40px}
+.princ li{background:var(--panel);border-radius:14px;padding:20px;transition:transform .4s var(--ease)} .princ li:hover{transform:translateY(-4px)}
+.princ b{display:block;font:700 18px/1.2 var(--f-display);margin-bottom:8px} .princ span{color:var(--muted);font-size:15px}
+.exp{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:56px}
+.exp li{display:grid;gap:2px;align-content:start;padding-top:16px;box-shadow:inset 0 2px 0 var(--fg)} .exp span{font-size:13px;color:var(--muted)} .exp b{font:700 19px var(--f-display)} .exp em{font-style:normal;color:var(--accent-ink);font-size:15px} .exp p{color:var(--muted);font-size:15px;margin-top:6px}
+.crs{margin-top:56px} .crs h3{font-size:22px}
+.crs ul{list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 40px;margin-top:16px}
+.crs li{display:flex;justify-content:space-between;gap:16px;padding:12px 0;box-shadow:inset 0 -1px 0 var(--line);font-size:15.5px}
+.crs li b{font-weight:500} .crs li span{color:var(--muted);font-size:14px;white-space:nowrap}
+.courses{margin-top:20px;color:var(--muted);font-size:15px}
+/* rodapé */
+footer{background:var(--slab);color:var(--slab-fg)}
+.f-cta{padding-block:clamp(72px,9vw,128px) 48px;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:40px;align-items:end}
+.f-cta p{font:800 calc(clamp(40px,5.6vw,84px)*var(--scale))/.95 var(--f-display);letter-spacing:-.05em}
+.f-cta p em{font-style:normal;color:var(--accent)}
+.f-con{display:grid;gap:10px;font-size:17px} .f-con .btn.p{background:var(--accent);color:var(--on-accent);justify-self:start} .f-con .btn.p:hover{background:var(--slab-fg)}
+.f-con button{font:600 13px var(--f-body);background:transparent;color:var(--slab-fg);border:1px solid #444;border-radius:999px;padding:3px 10px;cursor:pointer;margin-left:8px}
+.f-base{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-block:22px 30px;font-size:14px;color:#BDBDB7;box-shadow:inset 0 1px 0 #333}
+.f-base nav{display:flex;gap:18px;flex-wrap:wrap} .f-base a:hover{color:var(--accent)}
+footer :focus-visible{outline-color:var(--accent)}
+
+/* ---- kit: mockups ---- */
+.mk{--mk-bg:var(--panel);--mk-fg:var(--fg);--mk-line:var(--line);--mk-acc:var(--accent);--mk-soft:var(--soft);
+  background:var(--mk-bg);color:var(--mk-fg);border-radius:var(--mk-r,10px);overflow:hidden;font:500 12px/1.3 var(--f-body);
+  box-shadow:0 0 0 1px var(--mk-line);max-width:100%}
+.mk-bar{display:flex;align-items:center;gap:6px;padding:9px 12px;border-bottom:1px solid var(--mk-line)}
+.mk-bar i{width:8px;height:8px;border-radius:50%;background:var(--mk-line)}
+.mk-bar span{margin-left:8px;opacity:.6;font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mk-dash{display:grid;grid-template-columns:118px minmax(0,1fr);min-height:260px}
+.mk-side{border-right:1px solid var(--mk-line);padding:12px 10px;display:grid;align-content:start;gap:4px}
+.mk-side b{font-size:12px;margin-bottom:8px}
+.mk-side span{padding:5px 7px;border-radius:5px;opacity:.7}
+.mk-side span.on{background:var(--mk-soft);opacity:1;color:var(--mk-acc);font-weight:700}
+.mk-main{padding:14px;display:grid;gap:12px;min-width:0}
+.mk-kpis{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:8px}
+.mk-kpi{border:1px solid var(--mk-line);border-radius:7px;padding:8px 10px;min-width:0}
+.mk-kpi small{display:block;opacity:.6;font-size:10px}
+.mk-kpi b{font-size:18px;font-variant-numeric:tabular-nums}
+.mk-kpi:first-child b{font-size:24px;color:var(--mk-acc)}
+.mk-chart{display:flex;align-items:flex-end;gap:5px;height:84px;padding:8px 10px 0;border:1px solid var(--mk-line);border-radius:7px}
+.mk-chart i{flex:1;background:var(--mk-acc);opacity:.35;border-radius:3px 3px 0 0}
+.mk-chart i.p{opacity:1}
+.mk-rows{display:grid;gap:5px}
+.mk-rows div{display:grid;grid-template-columns:2fr 1fr 1fr;gap:8px}
+.mk-rows em{height:8px;border-radius:4px;background:var(--mk-line);display:block}
+.mk-note{font-size:10px;opacity:.55;padding:6px 12px;border-top:1px solid var(--mk-line)}
+.mk-crm{padding:12px;display:grid;gap:10px}
+.mk-tabs{display:flex;gap:6px;flex-wrap:wrap}
+.mk-tabs span{padding:4px 9px;border-radius:999px;border:1px solid var(--mk-line);font-size:11px}
+.mk-tabs span.on{background:var(--mk-acc);border-color:var(--mk-acc);color:var(--on-accent)}
+.mk-cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.mk-col{background:var(--mk-soft);border-radius:7px;padding:7px;display:grid;align-content:start;gap:6px;min-height:150px}
+.mk-col>b{font-size:11px;opacity:.75}
+.mk-card{background:var(--mk-bg);border:1px solid var(--mk-line);border-radius:6px;padding:7px}
+.mk-card b{display:block;font-size:11px}
+.mk-card small{opacity:.6;font-size:10px}
+.mk-card.conf{box-shadow:inset 3px 0 0 var(--mk-acc)}
+.mk-phone{width:220px;max-width:100%;border-radius:26px;padding:10px;background:var(--mk-bg);box-shadow:0 0 0 1px var(--mk-line),0 0 0 6px var(--mk-soft)}
+.mk-phone h5{font-size:15px;margin:8px 4px 10px}
+.mk-phone div{border:1px solid var(--mk-line);border-radius:10px;padding:8px 10px;margin-bottom:6px}
+.mk-phone div b{display:block;font-size:12px}
+.mk-phone div small{opacity:.65;font-size:10.5px}
+.mk-phone div.live{border-color:var(--mk-acc)}
+.mk-phone div.live small::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--mk-acc);margin-right:5px;animation:kpulse 1.6s infinite}
+@keyframes kpulse{50%{opacity:.25}}
+.mk-prod{padding:18px;display:grid;gap:10px;min-height:150px;align-content:center}
+.mk-prod b{font:700 20px/1.1 var(--f-display);max-width:14ch}
+.mk-prod p{opacity:.7;max-width:34ch}
+.mk-prod span{justify-self:start;background:var(--mk-acc);color:var(--on-accent);padding:5px 10px;border-radius:6px;font-weight:700;font-size:11px}
+/* filtro */
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{font:inherit;cursor:pointer}
+[data-tags].off{display:none}
+/* entrada discreta (conteúdo visível sem script) */
+.js .rv.pre{opacity:0;transform:translateY(18px)}
+.rv{transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+@media(prefers-reduced-motion:reduce){.rv{transition:none}.js .rv.pre{opacity:1;transform:none}.mk-phone div.live small::before{animation:none}*{scroll-behavior:auto!important}}
+@media(max-width:560px){.mk-dash{grid-template-columns:1fr}.mk-side{display:none}.mk-cols{grid-template-columns:1fr 1fr}.mk-cols .mk-col:last-child{display:none}}
+
+
+.route{position:relative;background:var(--panel);border-radius:16px;box-shadow:0 0 0 1px var(--line);padding:18px 18px 8px;max-width:100%}
+.route-h{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:14px}
+.route-h b{font-weight:600}
+.route-h span{color:var(--muted)}
+.route-h .now{color:var(--accent-ink,var(--accent));font-weight:600}
+.route-h .now::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--accent);margin-right:7px;animation:kpulse 1.6s infinite}
+.route svg{display:block;width:100%;height:auto;overflow:visible}
+.route .road{fill:none;stroke:var(--soft);stroke-width:22;stroke-linecap:round;stroke-linejoin:round}
+.route .lane{fill:none;stroke:var(--line);stroke-width:2;stroke-dasharray:8 10;animation:lane 1.2s linear infinite}
+@keyframes lane{to{stroke-dashoffset:-18}}
+.route .stop circle{fill:var(--panel);stroke:var(--fg);stroke-width:2.5}
+.route .stop.on circle{fill:var(--accent);stroke:var(--accent)}
+.route .stop.end circle{fill:var(--fg)}
+.route .lbl{font:600 12px var(--f-body);fill:var(--fg)}
+.route .lbl.m{fill:var(--muted);font-weight:500}
+.bus .body{fill:var(--accent)}
+.bus .roof{fill:var(--fg)}
+.bus .win{fill:var(--panel);opacity:.92}
+.bus .wheel{fill:var(--fg)}
+.bus .hub{fill:var(--panel)}
+.bus .spin{animation:spin .6s linear infinite;transform-box:fill-box;transform-origin:center}
+.bus .light{fill:#FFE08A}
+@keyframes spin{to{transform:rotate(360deg)}}
+.route-wrap{display:grid;gap:16px;position:relative}
+.route-wrap{gap:0}.route-wrap .mk-phone{position:relative;justify-self:end;width:196px;margin:-56px 16px 0 0}
+@media(max-width:700px){.route-wrap .mk-phone{margin:-12px 8px 0 0}}
+@media(prefers-reduced-motion:reduce){.route .lane,.bus .spin,.route-h .now::before{animation:none}}
+
+@media(max-width:1000px){nav.top .links{display:none}.hero .w,.slab .w,.panel,.vx-top,.prow,.f-cta{grid-template-columns:1fr}.svc{grid-template-columns:1fr 1fr}.princ{grid-template-columns:1fr 1fr}
+.prow>div:first-child{position:static}.plist li{grid-template-columns:1fr;gap:4px}.plist a{justify-self:start}.stack{max-width:620px}}
+@media(max-width:640px){.vx-grid,.svc,.princ,.exp,.dec,.crs ul{grid-template-columns:1fr}.fig-sub div{grid-template-columns:72px 1fr}.fig-sub b{font-size:40px}
+.stack{aspect-ratio:auto;display:grid;gap:12px}.stack .shot{position:static;width:100%;transform:none!important}.stack .s1{display:none}.stack .mk-phone{position:relative;right:auto;bottom:auto;margin:-70px 10px 0 auto;width:170px}
+.tabs{display:flex;border-radius:16px}.tabs button{flex:1 1 auto}.vx-meta{flex-direction:column;gap:8px}}
+@media(prefers-reduced-motion:reduce){.wd>span,.hero-in,.panel,.stack .mk-phone{animation:none}}
+</style>
+</head><body>
+
+
+<nav class="top" aria-label="Seções"><div class="w"><a class="nm" href="#topo"><i></i>Henrique Cipriani</a>
+<div class="links"><a href="#cases">Cases</a><a href="#vynex">Vynex</a><a href="#projetos">Projetos</a><a href="#sobre">Sobre</a></div>
+<a class="btn p" href="#contato">Contato</a></div></nav>
+
+<header class="hero" id="topo"><div class="w">
+<div><h1><span class="wd"><span style="animation-delay:0ms">Oi,</span></span> <span class="wd"><span style="animation-delay:70ms">eu</span></span> <span class="wd"><span style="animation-delay:140ms">sou</span></span> <span class="wd"><span style="animation-delay:210ms">o</span></span> <span class="wd"><span style="animation-delay:280ms"><em>Henrique.</em></span></span></h1>
+<p class="lead">Sou desenvolvedor, co-founder da Vynex Systems e estudante de Ciência da Computação na UNIVALI, em Itajaí. Trabalho com desenvolvimento numa trading de alimentos e gosto de construir sistemas que as pessoas usam no dia a dia. Aqui estão alguns dos sistemas em que trabalho.</p>
+<ul class="facts"><li><b>Co-founder</b>&nbsp;Vynex Systems</li><li><b>Assistente de TI</b>&nbsp;atuando em dev</li><li><b>UNIVALI</b>&nbsp;Itajaí</li></ul>
+<div class="cta"><a class="btn p" href="#cases">Ver o que construí</a><a class="btn g" href="https://henriquehce.github.io/portfolio/Henrique_Cipriani_CV.pdf" target="_blank" rel="noopener">Baixar currículo</a></div></div>
+<div class="stack hero-in"><figure class="shot s1"><div class="shot-bar"><i></i><i></i><i></i><span>sign.vynexsystems.com</span></div>
+<img src="assets/vx-sign.webp" alt="Tela inicial do Vynex Sign" width="1100" height="560" decoding="async"></figure><figure class="shot s2"><div class="shot-bar"><i></i><i></i><i></i><span>vynexsystems.com</span></div>
+<img src="assets/vx-vendas.webp" alt="Tela inicial do Vynex Vendas" width="1100" height="560" decoding="async"></figure><figure class="mk-phone mk" aria-label="Área do aluno da i9+ Transportes, exemplo">
+<h5>Olá, Ana</h5><div><b>Mensalidade de outubro</b><small>Paga via PIX</small></div>
+<div><b>Vai hoje?</b><small>Enquete do noturno aberta até 17h</small></div>
+<div class="live"><b>Ônibus a caminho</b><small>Av. Marginal Oeste · ao vivo</small></div>
+<div><b>Comprovantes</b><small>Contrato e parcelas</small></div></figure></div>
+</div></header>
+
+<div class="slab"><div class="w"><div class="fig-main"><b>50</b><span>pessoas usam todo dia o portal de dashboards que construí</span></div>
+<div class="fig-sub"><div><b>18</b><span>vendedores e compradores no CRM</span></div><div><b>4</b><span>produtos próprios da Vynex</span></div><div><b>11</b><span>áreas atendidas pelo portal</span></div></div></div></div>
+
+<section id="cases"><div class="w">
+<h2 class="rv">O que está em produção</h2>
+<div class="tabs" role="tablist" aria-label="Cases">
+<button role="tab" id="t-portal" aria-controls="p-portal">Portal de dashboards</button>
+<button role="tab" id="t-crm" aria-controls="p-crm">CRM de compra e venda</button>
+<button role="tab" id="t-i9" aria-controls="p-i9">i9+ Transportes</button></div>
+
+<div class="panel" role="tabpanel" id="p-portal" aria-labelledby="t-portal">
+<div><h3>Portal interno de dashboards</h3><p class="org">Trading de alimentos · importação e exportação de proteína · Desenvolvedor único</p><p class="lead">Um lugar só para os painéis e as ferramentas de todas as áreas da empresa: financeiro, operacional, controladoria, comercial, RH, marketing, NPS e TI. Roda num único Cloudflare Worker com arquivos estáticos: um deploy, um lugar para ler e custo perto de zero.</p><ul class="chipl"><li>Cloudflare Workers</li><li>R2</li><li>D1</li><li>Zero Trust</li><li>HTML/JS puro</li><li>Python</li><li>SQL Server</li><li>PostgreSQL</li><li>Node (testes)</li></ul>
+<p class="inc-h">O que quebrou e virou trava</p><ul class="inc"><li><b>Um painel sumiu do ar sem erro nenhum.</b><p>Checagem antes do deploy que recusa publicar dado com mais de 30 horas ou arquivo faltando, e registro de quem publicou e de onde.</p></li><li><b>O lucro aparecia até 10 vezes maior.</b><p>Deduplicação por processo numa regra de cálculo separada, com teste.</p></li><li><b>Uma base ficou acessível para quem não devia.</b><p>Bloqueio por caminho e um teste que falha se página e API discordarem.</p></li><li><b>Uma queda de 50% que não existia.</b><p>Trava que impede comparar mês parcial com mês completo.</p></li></ul></div>
+<div><figure class="mk" aria-label="Tela de exemplo do portal de dashboards, com dados fictícios">
+<div class="mk-bar"><i></i><i></i><i></i><span>portal.interno / financeiro</span></div>
+<div class="mk-dash"><div class="mk-side"><b>Portal</b><span class="on">Financeiro</span><span>Operacional</span><span>Controladoria</span><span>Comercial</span><span>Marketing</span><span>NPS</span><span>Saúde do sistema</span></div>
+<div class="mk-main"><div class="mk-kpis"><div class="mk-kpi"><small>Saldo projetado · 90 dias</small><b>R$ 0,0 mi</b></div><div class="mk-kpi"><small>Entradas</small><b>000</b></div><div class="mk-kpi"><small>Dados de</small><b>04:00</b></div></div>
+<div class="mk-chart" aria-hidden="true"><i style="height:38%"></i><i style="height:52%"></i><i style="height:46%"></i><i style="height:61%"></i><i style="height:58%"></i><i style="height:70%"></i><i style="height:66%"></i><i style="height:74%"></i><i style="height:69%"></i><i style="height:81%"></i><i style="height:77%"></i><i style="height:88%" class=p></i></div><div class="mk-rows" aria-hidden="true"><div><em style="width:80%"></em><em style="width:60%"></em><em style="width:50%"></em></div><div><em style="width:65%"></em><em style="width:70%"></em><em style="width:40%"></em></div><div><em style="width:90%"></em><em style="width:55%"></em><em style="width:60%"></em></div><div><em style="width:70%"></em><em style="width:45%"></em><em style="width:55%"></em></div></div></div></div>
+<figcaption class="mk-note">Dados fictícios. Fluxo de caixa com projeção.</figcaption></figure><ul class="dec"><li><b>Um Worker só, sem framework</b><p>Um deploy e um lugar para ler. A simplicidade é escolha, não falta de recurso.</p></li><li><b>Permissão com fonte única</b><p>A mesma regra decide o que a página, a API e os cards da home mostram.</p></li><li><b>Bloqueio por caminho</b><p>O arquivo de dados tem a mesma trava da página que o exibe. Na dúvida, nega.</p></li><li><b>Pipeline que se recusa</b><p>O gerador não grava se o cubo não fecha com o banco, e o deploy não sobe dado velho.</p></li></ul></div></div>
+
+<div class="panel" role="tabpanel" id="p-crm" aria-labelledby="t-crm">
+<div><h3>CRM de compra e venda</h3><p class="org">Trading de alimentos · três divisões · Desenvolvedor único, com o Claude Code como parceiro</p><p class="lead">CRM interno em produção, usado todo dia por vendedores e compradores. Atende as divisões Seafood, Meat e Animal Nutrition como módulos isolados: os dados de uma divisão nunca aparecem para outra.</p><ul class="chipl"><li>Next.js</li><li>TypeScript</li><li>PostgreSQL + RLS</li><li>Drizzle</li><li>Servidor próprio</li></ul></div>
+<div><figure class="mk" aria-label="Tela de exemplo do CRM, com dados fictícios">
+<div class="mk-bar"><i></i><i></i><i></i><span>crm / pipeline</span></div>
+<div class="mk-crm"><div class="mk-tabs"><span class="on">Seafood</span><span>Meat</span><span>Animal Nutrition</span></div>
+<div class="mk-cols"><div class="mk-col"><b>Oferta</b><div class="mk-card"><b>Cliente A</b><small>Camarão · 2 cont.</small></div><div class="mk-card"><b>Cliente B</b><small>Salmão · 1 cont.</small></div></div>
+<div class="mk-col"><b>Contraproposta</b><div class="mk-card conf"><b>Cliente C</b><small>Editado por outra pessoa · revisar</small></div></div>
+<div class="mk-col"><b>Fechado</b><div class="mk-card"><b>Cliente D</b><small>Pedido gerado</small></div></div></div></div>
+<figcaption class="mk-note">Dados fictícios. Cada divisão só enxerga o próprio funil.</figcaption></figure><ul class="dec"><li><b>Isolamento no banco</b><p>Row-Level Security no PostgreSQL. A divisão ativa nunca vem do navegador: entra por uma única função de sessão.</p></li><li><b>Autosave sem perder edição</b><p>Bloqueio otimista com coluna de versão. Em conflito, a resposta 409 mostra o que mudou em cada registro.</p></li><li><b>Importação de qualquer planilha</b><p>Excel, tabela colada, foto ou PDF. Aliases fixos, depois aprendidos, e IA só por último, usando o perfil estatístico das colunas para ler até dado sem cabeçalho.</p></li><li><b>Sincronização que não apaga</b><p>Empresas e produtos chegam de um SQL Server externo de forma aditiva. O que o usuário editou nunca é sobrescrito.</p></li><li><b>Rotina por e-mail</b><p>Resumo diário por divisão, resumo semanal e redefinição de senha com token de uso único.</p></li><li><b>Entrega com revisão</b><p>Script de QA, hook e pre-commit antes de cada entrega, além de log de atividades e notas de versão.</p></li></ul></div></div>
+
+<div class="panel" role="tabpanel" id="p-i9" aria-labelledby="t-i9">
+<div><h3>i9+ Transportes</h3><p class="org">Cliente da Vynex · transporte universitário e fretamento em Balneário Camboriú</p>
+<p class="lead">Site, área do aluno e app Android de uma empresa com mais de 25 anos levando universitários de Balneário Camboriú até a UNIVALI, em Itajaí. O aluno paga a mensalidade por PIX, responde a enquete do dia, vê onde o ônibus está e reserva viagens de evento com QR Code de embarque.</p>
+<ul class="chipl"><li class="hl">App Android</li><li>Área do aluno</li><li>PIX</li><li>Localização ao vivo</li><li>QR de embarque</li></ul>
+<figure class="photo"><img src="assets/i9-onibus-campus.webp" alt="Micro-ônibus e ônibus da i9+ estacionados em frente ao campus da UNIVALI" width="1100" height="646" decoding="async"><figcaption>Frota da i9+ em frente ao campus da UNIVALI. Foto: i9+ Transportes.</figcaption></figure>
+<p style="margin-top:22px"><a class="btn g" href="https://i9maistransportes.com.br/" target="_blank" rel="noopener">Abrir i9maistransportes.com.br</a></p></div>
+<div><div class="route-wrap"><figure class="route" aria-label="Animação do ônibus fazendo a linha de Balneário Camboriú até a UNIVALI Itajaí">
+<div class="route-h"><b>Linha BC → UNIVALI Itajaí</b><span class="now" id="busNow" aria-live="off">Av. Marginal Oeste</span></div>
+<svg viewBox="0 0 560 250" role="img" aria-hidden="true">
+<path id="routePath" class="road" d="M40 205 C 120 205, 130 120, 215 128 S 330 215, 400 170 S 470 60, 525 58"/>
+<path class="lane" d="M40 205 C 120 205, 130 120, 215 128 S 330 215, 400 170 S 470 60, 525 58"/>
+<g id="stops"></g>
+<text class="lbl" x="22" y="238">BC · R. São Paulo</text><text class="lbl" x="538" y="30" text-anchor="end">UNIVALI Itajaí</text>
+<g class="bus" id="bus"><g transform="translate(-34,-30)">
+<rect class="body" x="0" y="6" width="68" height="34" rx="7"/><rect class="roof" x="4" y="2" width="58" height="7" rx="3"/>
+<rect class="win" x="6" y="12" width="12" height="11" rx="2"/><rect class="win" x="21" y="12" width="12" height="11" rx="2"/><rect class="win" x="36" y="12" width="12" height="11" rx="2"/><rect class="win" x="51" y="12" width="12" height="13" rx="2"/>
+<rect class="light" x="64" y="30" width="4" height="5" rx="1"/>
+<g class="spin"><circle class="wheel" cx="16" cy="40" r="7"/><circle class="hub" cx="16" cy="40" r="2.5"/><rect class="hub" x="15.2" y="34" width="1.6" height="12"/></g>
+<g class="spin"><circle class="wheel" cx="52" cy="40" r="7"/><circle class="hub" cx="52" cy="40" r="2.5"/><rect class="hub" x="51.2" y="34" width="1.6" height="12"/></g>
+</g></g></svg></figure><figure class="mk-phone mk" aria-label="Área do aluno da i9+ Transportes, exemplo">
+<h5>Olá, Ana</h5><div><b>Mensalidade de outubro</b><small>Paga via PIX</small></div>
+<div><b>Vai hoje?</b><small>Enquete do noturno aberta até 17h</small></div>
+<div class="live"><b>Ônibus a caminho</b><small>Av. Marginal Oeste · ao vivo</small></div>
+<div><b>Comprovantes</b><small>Contrato e parcelas</small></div></figure></div></div></div>
+</div></section>
+
+<section id="vynex" style="background:var(--panel)"><div class="w">
+<div class="vx-top"><h2 class="rv">Vynex Systems</h2><p>A empresa que co-fundei em 2026. Fazemos sistemas web sob medida e temos produtos próprios no ar. No primeiro ano foram 4 clientes.</p></div>
+<div class="vx-grid"><article class="vx-card rv"><a href="https://sign.vynexsystems.com/" target="_blank" rel="noopener" aria-label="Abrir Vynex Sign"><figure class="shot"><div class="shot-bar"><i></i><i></i><i></i><span>sign.vynexsystems.com</span></div>
+<img src="assets/vx-sign.webp" alt="Tela inicial do Vynex Sign" width="1100" height="560" decoding="async"></figure></a>
+<div class="vx-meta"><div><h3>Vynex Sign</h3><p>Assinatura eletrônica pelo celular, com selfie, código de verificação e trilha de auditoria.</p></div><span class="pill">No ar</span></div></article><article class="vx-card rv"><a href="https://juridico.vynexsystems.com/" target="_blank" rel="noopener" aria-label="Abrir Vynex Jurídico"><figure class="shot"><div class="shot-bar"><i></i><i></i><i></i><span>juridico.vynexsystems.com</span></div>
+<img src="assets/vx-juridico.webp" alt="Tela inicial do Vynex Jurídico" width="1100" height="560" decoding="async"></figure></a>
+<div class="vx-meta"><div><h3>Vynex Jurídico</h3><p>Processos, agenda, financeiro e documentos de escritórios de advocacia num lugar só.</p></div><span class="pill">No ar</span></div></article><article class="vx-card rv"><a href="https://rotas.vynexsystems.com/" target="_blank" rel="noopener" aria-label="Abrir Vynex Rotas"><figure class="shot"><div class="shot-bar"><i></i><i></i><i></i><span>rotas.vynexsystems.com</span></div>
+<img src="assets/vx-rotas.webp" alt="Tela inicial do Vynex Rotas" width="1100" height="560" decoding="async"></figure></a>
+<div class="vx-meta"><div><h3>Vynex Rotas</h3><p>Rotas, passageiros e mensalidades de vans e ônibus, com o veículo ao vivo no mapa.</p></div><span class="pill new">Lançamento</span></div></article><article class="vx-card rv"><a href="https://vynexsystems.com/" target="_blank" rel="noopener" aria-label="Abrir Vynex Vendas"><figure class="shot"><div class="shot-bar"><i></i><i></i><i></i><span>vynexsystems.com</span></div>
+<img src="assets/vx-vendas.webp" alt="Tela inicial do Vynex Vendas" width="1100" height="560" decoding="async"></figure></a>
+<div class="vx-meta"><div><h3>Vynex Vendas</h3><p>CRM comercial: funil, propostas em PDF, WhatsApp, agenda e metas de receita recorrente.</p></div><span class="pill new">Produto</span></div></article></div>
+<ul class="svc"><li><b>Sistemas web sob medida</b><span>ERPs, CRMs e portais feitos em cima do jeito que a equipe já trabalha.</span></li><li><b>Dashboards e relatórios</b><span>Os números do negócio num painel que se atualiza sozinho.</span></li><li><b>Sites e landing pages</b><span>Rápidos, com formulário e WhatsApp ligados no que importa.</span></li><li><b>Integrações e APIs</b><span>WhatsApp, ERPs, gateway de pagamento e planilhas conversando entre si.</span></li></ul>
+<p style="margin-top:40px"><a class="btn p" href="https://vynexsystems.com/" target="_blank" rel="noopener">Abrir vynexsystems.com</a></p>
+</div></section>
+
+<section id="projetos"><div class="w prow">
+<div><h2>Outros projetos</h2><p class="sub">Ferramentas internas da Vynex, o TCC e trabalhos da UNIVALI.</p></div>
+<ul class="plist"><li class="rv"><div><h3>Vynex Studio</h3><span class="pst">Em construção</span></div><p>Ferramenta interna da Vynex para e-mails e Cloudflare, que vai crescer para vídeo e motion.</p><span class="tg">Cloudflare · Web</span>
+<span class="tg">Privado</span></li><li class="rv"><div><h3>Vynex Prospect</h3><span class="pst">Em planejamento</span></div><p>Encontra negócios sem site no Google Maps, gera um site de demonstração com IA e monta a mensagem de abordagem.</p><span class="tg">IA · Cloudflare · Web</span>
+<span class="tg">Privado</span></li><li class="rv"><div><h3>Rixardê Studio</h3><span class="pst">Em construção</span></div><p>Software local que organiza e automatiza a produção de vídeos de IA para TikTok.</p><span class="tg">Python · IA</span>
+<span class="tg">Privado</span></li><li class="rv"><div><h3>AGAR Digital</h3><span class="pst">Em desenvolvimento</span></div><p>TCC: aplicativo de apoio a gestantes de alto risco do Ambulatório AGAR, da UNIVALI.</p><span class="tg">Mobile · Node.js</span>
+<a href="https://github.com/henriquehce/agar-backend" target="_blank" rel="noopener">Back-end no GitHub</a></li><li class="rv"><div><h3>Adote por Amor BC</h3><span class="pst">Extensão UNIVALI</span></div><p>Projeto de extensão para uma ONG de resgate de gatos de Balneário Camboriú.</p><span class="tg">Web</span>
+<a href="https://github.com/henriquehce/Adote_por_amor_bc" target="_blank" rel="noopener">GitHub</a></li><li class="rv"><div><h3>Tudo Sobre Cinema</h3><span class="pst">No ar</span></div><p>Site editorial responsivo inspirado em portais de entretenimento.</p><span class="tg">Web</span>
+<a href="https://henriquehce.github.io/Cinema/" target="_blank" rel="noopener">Abrir site</a></li><li class="rv"><div><h3>Platformer 2D</h3><span class="pst">Concluído</span></div><p>Jogo de plataforma com várias fases e progressão, feito na Godot.</p><span class="tg">Jogos</span>
+<a href="https://github.com/henriquehce/Godot2DGame" target="_blank" rel="noopener">GitHub</a></li><li class="rv"><div><h3>Coloração de grafos</h3><span class="pst">Acadêmico</span></div><p>Implementação e comparação de métodos de coloração de grafos.</p><span class="tg">Python</span>
+<a href="https://github.com/henriquehce/grafos_coloracao_e_metodos" target="_blank" rel="noopener">GitHub</a></li><li class="rv"><div><h3>Agentes de IA</h3><span class="pst">Acadêmico</span></div><p>Sistema multiagente em Java, feito na disciplina de Sistemas Multiagentes.</p><span class="tg">IA · Java</span>
+<a href="https://github.com/henriquehce/agentesIA" target="_blank" rel="noopener">GitHub</a></li></ul></div></section>
+
+<section id="sobre" style="background:var(--soft)"><div class="w">
+<h2 class="rv">Como eu trabalho</h2><ul class="princ"><li class="rv"><b>A solução mais simples que resolve o problema de hoje.</b><span>O que fica obsoleto é apagado, sem camada de compatibilidade.</span></li><li class="rv"><b>Entrega em fatias verticais.</b><span>Tela, API e dado juntos, sem desmontar o que já está no ar.</span></li><li class="rv"><b>Regra de cálculo separada e testada.</b><span>O número do relatório não depende do código da tela.</span></li><li class="rv"><b>Falha de rede nunca é silenciosa.</b><span>Se o upload não foi, a pessoa fica sabendo.</span></li><li class="rv"><b>Cada incidente vira teste ou trava.</b><span>O mesmo erro não acontece duas vezes.</span></li></ul>
+<ul class="exp"><li><span>2026 — hoje</span><b>Co-founder</b><em>Vynex Systems</em><p>Sistemas sob medida e produtos próprios. Atendo o cliente direto, do primeiro rascunho ao suporte.</p></li><li><span>Atual</span><b>Assistente de TI, atuando em desenvolvimento</b><em>Trading de alimentos (comércio exterior)</em><p>Portal de dashboards para 50 pessoas e CRM para 18 vendedores e compradores, ambos em produção.</p></li><li><span>Em curso</span><b>Ciência da Computação</b><em>UNIVALI Itajaí</em><p>TCC sobre um aplicativo para gestantes de alto risco.</p></li></ul>
+<div class="crs"><h3>Cursos e certificados</h3><ul><li><b>Prompt Engineering: projetando e automatizando interações com LLMs</b><span>Alura · set. 2026</span></li><li><b>Context Engineering: otimização da janela de contexto de IAs</b><span>Alura · set. 2026</span></li><li><b>PHP: evolua seu conhecimento e organize seu código</b><span>Alura · mai. 2026</span></li><li><b>PHP: programação orientada a objetos</b><span>Alura · mai. 2026</span></li><li><b>Lógica de programação: JavaScript</b><span>Alura · abr. 2026</span></li><li><b>Python e IA aplicada</b><span>Alura</span></li><li><b>Git e GitHub</b><span></span></li><li><b>Data Science</b><span></span></li><li><b>SQL e SQLite</b><span></span></li><li><b>UX/UI Design</b><span></span></li></ul>
+<p class="courses">Estudando agora: engenharia e análise de dados, computação em nuvem, engenharia de ia.</p></div>
+</div></section>
+
+<footer id="contato"><div class="w">
+<div class="f-cta"><p>Quer trocar uma ideia? <em>Me chama.</em></p>
+<div class="f-con"><a class="btn p" href="https://wa.me/5547999715265" target="_blank" rel="noopener">Chamar no WhatsApp</a><span>henriquecipriani@gmail.com<button type="button" data-copy="henriquecipriani@gmail.com">Copiar</button></span><span>WhatsApp da Vynex: (47) 99971-5265</span></div></div>
+<div class="f-base"><span>Henrique Cipriani · Balneário Camboriú, SC</span><nav><a href="https://github.com/henriquehce" target="_blank" rel="noopener">GitHub</a><a href="https://www.linkedin.com/in/henrique-cipriani-9b006b173/" target="_blank" rel="noopener">LinkedIn</a><a href="https://henriquehce.github.io/portfolio/Henrique_Cipriani_CV.pdf" target="_blank" rel="noopener">Currículo</a><a href="#topo">Voltar ao topo</a></nav></div>
+</div></footer>
+<script>
+document.documentElement.classList.add('js');
+// entrada só para o que está abaixo da dobra
+(function(){const els=[...document.querySelectorAll('.rv')];if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.remove('pre');io.unobserve(en.target)}}),{rootMargin:'0px 0px -8% 0px'});
+els.forEach((el,i)=>{if(el.getBoundingClientRect().top>innerHeight){el.classList.add('pre');el.style.transitionDelay=((i%3)*75)+'ms';io.observe(el)}})})();
+// filtro por stack
+document.querySelectorAll('[data-filter]').forEach(box=>{const target=document.querySelector(box.dataset.filter);
+box.addEventListener('click',ev=>{const b=ev.target.closest('button[data-tag]');if(!b)return;const t=b.dataset.tag;
+box.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));
+let n=0;target.querySelectorAll('[data-tags]').forEach(c=>{const ok=t==='Todos'||c.dataset.tags.split('|').includes(t);c.classList.toggle('off',!ok);if(ok)n++});
+const out=document.querySelector(box.dataset.count);if(out)out.textContent=n+(n===1?' projeto':' projetos')})});
+// abas
+document.querySelectorAll('[role=tablist]').forEach(tl=>{const tabs=[...tl.querySelectorAll('[role=tab]')];
+function sel(tab){tabs.forEach(t=>{const on=t===tab;t.setAttribute('aria-selected',on);t.tabIndex=on?0:-1;document.getElementById(t.getAttribute('aria-controls')).hidden=!on})}
+tabs.forEach((t,i)=>{t.addEventListener('click',()=>sel(t));t.addEventListener('keydown',ev=>{if(ev.key==='ArrowRight'||ev.key==='ArrowLeft'){const n=tabs[(i+(ev.key==='ArrowRight'?1:tabs.length-1))%tabs.length];sel(n);n.focus()}})});
+sel(tabs[0])});
+// copiar e-mail
+document.querySelectorAll('[data-copy]').forEach(b=>b.addEventListener('click',()=>{const v=b.dataset.copy,lab=b.textContent;
+const done=()=>{b.textContent='Copiado';setTimeout(()=>b.textContent=lab,1600)};
+if(navigator.clipboard)navigator.clipboard.writeText(v).then(done,()=>{});}));
+
+(function(){const path=document.getElementById('routePath'),bus=document.getElementById('bus');if(!path||!bus)return;
+const S=["R. São Paulo","Av. Santa Catarina","Quinta Avenida","Av. Marginal Oeste","Terceira Avenida","Av. do Estado","Av. Sete de Setembro","UNIVALI Itajaí"],L=path.getTotalLength(),g=document.getElementById('stops'),ns='http://www.w3.org/2000/svg',now=document.getElementById('busNow');
+const live=document.querySelector('.route-wrap .mk-phone .live small');
+const at=S.map((_,i)=>i/(S.length-1)*L);
+at.forEach((d,i)=>{const p=path.getPointAtLength(d),c=document.createElementNS(ns,'g');c.setAttribute('class','stop'+(i===0||i===S.length-1?' end':''));
+c.innerHTML='<circle cx="'+p.x+'" cy="'+p.y+'" r="6"/>';g.appendChild(c)});
+const stops=[...g.children];let t=.38,last=-1,run=!matchMedia('(prefers-reduced-motion: reduce)').matches;
+function place(){const d=t*L,p=path.getPointAtLength(d),q=path.getPointAtLength(Math.min(L,d+1)),a=Math.atan2(q.y-p.y,q.x-p.x)*180/Math.PI;
+bus.setAttribute('transform','translate('+p.x+','+(p.y-2)+') rotate('+a+')');
+let k=0;at.forEach((x,i)=>{if(d>=x-4)k=i});if(k!==last){last=k;stops.forEach((s,i)=>s.classList.toggle('on',i===k&&i!==0&&i!==S.length-1));
+const txt=S[k]+(k===S.length-1?' · chegou':' · ao vivo');now.textContent=S[k];if(live)live.textContent=txt}}
+let prev=0;function tick(ts){if(prev&&bus.getBoundingClientRect().width){t+=(ts-prev)/22000;if(t>1){t=0}}prev=ts;place();if(run)requestAnimationFrame(tick)}
+place();if(run)requestAnimationFrame(tick)})();
+
+(function(){const nav=document.querySelector('nav.top');const ls=[...nav.querySelectorAll('.links a')];
+const secs=ls.map(a=>document.querySelector(a.getAttribute('href')));
+function on(){nav.classList.toggle('scrolled',scrollY>8);let k=-1;secs.forEach((s,i)=>{if(s&&s.getBoundingClientRect().top<140)k=i});ls.forEach((a,i)=>a.classList.toggle('on',i===k))}
+addEventListener('scroll',on,{passive:true});on()})();
+</script>
+</body></html>
