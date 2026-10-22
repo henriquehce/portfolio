@@ -93,13 +93,22 @@ nav.top .links a:hover{color:var(--fg)} nav.top .links a.on{color:var(--fg);back
 .vx-meta h3{font-size:22px} .vx-meta p{color:var(--muted);font-size:15.5px;margin-top:4px;max-width:46ch}
 .pill{flex:none;font-size:12.5px;font-weight:600;padding:4px 10px;border-radius:999px;background:color-mix(in srgb,var(--ok) 14%,var(--panel));color:#137A4B}
 .pill.new{background:color-mix(in srgb,var(--accent) 16%,var(--panel));color:var(--accent-ink)}
+.dl-head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-top:72px;padding-top:32px;box-shadow:inset 0 1px 0 var(--line)}
+.dl-head h3{font-size:clamp(26px,2.6vw,34px)} .dl-head p{color:var(--muted);max-width:44ch}
+.dl-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:28px}
+.dl{background:var(--bg);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;transition:transform .5s var(--ease)} .dl:hover{transform:translateY(-6px)}
+.dl>a{display:block;overflow:hidden} .dl img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top;transition:transform .8s var(--ease)} .dl:hover img{transform:scale(1.03)}
+.dl>div{padding:18px 20px 22px;display:flex;flex-direction:column;gap:6px;flex:1}
+.dl-k{font-size:12.5px;font-weight:600;color:var(--accent-ink)} .dl h4{font:700 20px/1.1 var(--f-display);letter-spacing:-.02em} .dl p{color:var(--muted);font-size:15px}
+.dl-l{margin-top:auto;padding-top:8px;font-weight:600;font-size:14.5px;text-underline-offset:3px}
+.wip{margin-top:28px;color:var(--muted);font-size:15.5px;max-width:80ch} .wip b{color:var(--fg);font-weight:600}
 .svc{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;margin-top:56px;padding-top:32px;box-shadow:inset 0 1px 0 var(--line)}
 .svc b{font:700 18px var(--f-display);display:block} .svc span{font-size:15px;color:var(--muted)}
 /* projetos */
-.prow{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,5vw,72px)}
+.prow{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:clamp(32px,5vw,72px)}
 .prow>div:first-child{align-self:start;position:sticky;top:100px}
 .plist{list-style:none}
-.plist li{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,2fr) minmax(0,.9fr) 110px;gap:18px;align-items:baseline;padding:18px 10px;margin-inline:-10px;border-radius:10px;box-shadow:inset 0 -1px 0 var(--line);transition:background .25s}
+.plist li{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,2.4fr) minmax(0,.8fr) 96px;gap:18px;align-items:baseline;padding:18px 10px;margin-inline:-10px;border-radius:10px;box-shadow:inset 0 -1px 0 var(--line);transition:background .25s}
 .plist li:hover{background:var(--panel)}
 .plist h3{font-size:20px;letter-spacing:-.02em} .plist .pst{font-size:13px;color:var(--accent-ink);font-weight:600}
 .plist p{color:#3F3F3B;font-size:15.5px} .plist .tg{font-size:13px;color:var(--muted)} .plist a{font-size:14px;font-weight:600;text-underline-offset:3px;justify-self:end}
@@ -212,9 +221,9 @@ footer :focus-visible{outline-color:var(--accent)}
 @media(max-width:700px){.route-wrap .mk-phone{margin:-12px 8px 0 0}}
 @media(prefers-reduced-motion:reduce){.route .lane,.bus .spin,.route-h .now::before{animation:none}}
 
-@media(max-width:1000px){nav.top .links{display:none}.hero .w,.slab .w,.panel,.vx-top,.prow,.f-cta{grid-template-columns:1fr}.svc{grid-template-columns:1fr 1fr}.princ{grid-template-columns:1fr 1fr}
+@media(max-width:1000px){.dl-grid{grid-template-columns:1fr 1fr}nav.top .links{display:none}.hero .w,.slab .w,.panel,.vx-top,.prow,.f-cta{grid-template-columns:1fr}.svc{grid-template-columns:1fr 1fr}.princ{grid-template-columns:1fr 1fr}
 .prow>div:first-child{position:static}.plist li{grid-template-columns:1fr;gap:4px}.plist a{justify-self:start}.stack{max-width:620px}}
-@media(max-width:640px){.vx-grid,.svc,.princ,.exp,.dec,.crs ul{grid-template-columns:1fr}.fig-sub div{grid-template-columns:72px 1fr}.fig-sub b{font-size:40px}
+@media(max-width:640px){.dl-grid,.vx-grid,.svc,.princ,.exp,.dec,.crs ul{grid-template-columns:1fr}.fig-sub div{grid-template-columns:72px 1fr}.fig-sub b{font-size:40px}
 .stack{aspect-ratio:auto;display:grid;gap:12px}.stack .shot{position:static;width:100%;transform:none!important}.stack .s1{display:none}.stack .mk-phone{position:relative;right:auto;bottom:auto;margin:-70px 10px 0 auto;width:170px}
 .tabs{display:flex;border-radius:16px}.tabs button{flex:1 1 auto}.vx-meta{flex-direction:column;gap:8px}}
 @media(prefers-reduced-motion:reduce){.wd>span,.hero-in,.panel,.stack .mk-phone{animation:none}}
@@ -304,25 +313,34 @@ footer :focus-visible{outline-color:var(--accent)}
 <img src="assets/vx-juridico.webp" alt="Tela inicial do Vynex Jurídico" width="1100" height="560" decoding="async"></figure></a>
 <div class="vx-meta"><div><h3>Vynex Jurídico</h3><p>Processos, agenda, financeiro e documentos de escritórios de advocacia num lugar só.</p></div><span class="pill">No ar</span></div></article><article class="vx-card rv"><a href="https://rotas.vynexsystems.com/" target="_blank" rel="noopener" aria-label="Abrir Vynex Rotas"><figure class="shot"><div class="shot-bar"><i></i><i></i><i></i><span>rotas.vynexsystems.com</span></div>
 <img src="assets/vx-rotas.webp" alt="Tela inicial do Vynex Rotas" width="1100" height="560" decoding="async"></figure></a>
-<div class="vx-meta"><div><h3>Vynex Rotas</h3><p>Rotas, passageiros e mensalidades de vans e ônibus, com o veículo ao vivo no mapa.</p></div><span class="pill new">Lançamento</span></div></article><article class="vx-card rv"><a href="https://vynexsystems.com/" target="_blank" rel="noopener" aria-label="Abrir Vynex Vendas"><figure class="shot"><div class="shot-bar"><i></i><i></i><i></i><span>vynexsystems.com</span></div>
+<div class="vx-meta"><div><h3>Vynex Rotas</h3><p>Rotas, passageiros e mensalidades de vans e ônibus, com o veículo ao vivo no mapa.</p></div><span class="pill new">Lançamento</span></div></article><article class="vx-card rv"><a href="https://vendas.vynexsystems.com/" target="_blank" rel="noopener" aria-label="Abrir Vynex Vendas"><figure class="shot"><div class="shot-bar"><i></i><i></i><i></i><span>vendas.vynexsystems.com</span></div>
 <img src="assets/vx-vendas.webp" alt="Tela inicial do Vynex Vendas" width="1100" height="560" decoding="async"></figure></a>
-<div class="vx-meta"><div><h3>Vynex Vendas</h3><p>CRM comercial: funil, propostas em PDF, WhatsApp, agenda e metas de receita recorrente.</p></div><span class="pill new">Produto</span></div></article></div>
+<div class="vx-meta"><div><h3>Vynex Vendas</h3><p>CRM comercial: funil, propostas em PDF, WhatsApp, agenda e metas de receita recorrente.</p></div><span class="pill">No ar</span></div></article></div>
+<div class="dl-head"><h3>O que já entregamos</h3><p>Um cliente em produção e protótipos navegáveis de sistemas sob medida.</p></div>
+<div class="dl-grid"><article class="dl rv"><a href="#cases"><img src="assets/i9-onibus-campus.webp" alt="Tela ou foto de i9+ Transportes" decoding="async"></a>
+<div><span class="dl-k">Cliente</span><h4>i9+ Transportes</h4><p>Site, área do aluno e app Android de transporte universitário: PIX, enquete diária, ônibus ao vivo e QR de embarque.</p><a class="dl-l" href="#cases">Ver o case</a></div></article><article class="dl rv"><a href="https://prototipos.vynexsystems.com/sistema" target="_blank" rel="noopener"><img src="assets/vx-erp.webp" alt="Tela ou foto de Sistema de gestão" decoding="async"></a>
+<div><span class="dl-k">ERP sob medida</span><h4>Sistema de gestão</h4><p>Dashboard administrativo, clientes, contratos, financeiro e portal do cliente.</p><a class="dl-l" href="https://prototipos.vynexsystems.com/sistema" target="_blank" rel="noopener">Explorar protótipo</a></div></article><article class="dl rv"><a href="https://prototipos.vynexsystems.com/atendimento-multicanal" target="_blank" rel="noopener"><img src="assets/vx-crm.webp" alt="Tela ou foto de CRM multicanal" decoding="async"></a>
+<div><span class="dl-k">Atendimento</span><h4>CRM multicanal</h4><p>Conversas de WhatsApp e outros canais numa operação só, com kanban, tarefas e compromissos.</p><a class="dl-l" href="https://prototipos.vynexsystems.com/atendimento-multicanal" target="_blank" rel="noopener">Explorar protótipo</a></div></article></div>
+<p class="wip">Em construção na Vynex: <b>Vynex Studio</b>, ferramenta interna para e-mails e Cloudflare, e <b>Vynex Prospect</b>, que encontra negócios sem site e gera um site de demonstração com IA.</p>
 <ul class="svc"><li><b>Sistemas web sob medida</b><span>ERPs, CRMs e portais feitos em cima do jeito que a equipe já trabalha.</span></li><li><b>Dashboards e relatórios</b><span>Os números do negócio num painel que se atualiza sozinho.</span></li><li><b>Sites e landing pages</b><span>Rápidos, com formulário e WhatsApp ligados no que importa.</span></li><li><b>Integrações e APIs</b><span>WhatsApp, ERPs, gateway de pagamento e planilhas conversando entre si.</span></li></ul>
 <p style="margin-top:40px"><a class="btn p" href="https://vynexsystems.com/" target="_blank" rel="noopener">Abrir vynexsystems.com</a></p>
 </div></section>
 
 <section id="projetos"><div class="w prow">
-<div><h2>Outros projetos</h2><p class="sub">Ferramentas internas da Vynex, o TCC e trabalhos da UNIVALI.</p></div>
-<ul class="plist"><li class="rv"><div><h3>Vynex Studio</h3><span class="pst">Em construção</span></div><p>Ferramenta interna da Vynex para e-mails e Cloudflare, que vai crescer para vídeo e motion.</p><span class="tg">Cloudflare · Web</span>
-<span class="tg">Privado</span></li><li class="rv"><div><h3>Vynex Prospect</h3><span class="pst">Em planejamento</span></div><p>Encontra negócios sem site no Google Maps, gera um site de demonstração com IA e monta a mensagem de abordagem.</p><span class="tg">IA · Cloudflare · Web</span>
-<span class="tg">Privado</span></li><li class="rv"><div><h3>Rixardê Studio</h3><span class="pst">Em construção</span></div><p>Software local que organiza e automatiza a produção de vídeos de IA para TikTok.</p><span class="tg">Python · IA</span>
+<div><h2>Outros projetos</h2><p class="sub">Automações e ferramentas do trabalho, projetos da UNIVALI e coisas que faço para uso próprio.</p></div>
+<ul class="plist"><li class="rv"><div><h3>Chatbot de FAQ da UNIVALI</h3><span class="pst">Concluído</span></div><p>Responde dúvidas frequentes de alunos com classificação de intenção em TensorFlow/Keras e spaCy. Interface em Streamlit, publicada no Hugging Face Spaces.</p><span class="tg">IA · Python</span>
+<span class="tg">Privado</span></li><li class="rv"><div><h3>Onboarding automatizado</h3><span class="pst">Em produção</span></div><p>Fluxo no Power Automate que cria as pastas do novo colaborador no SharePoint, preenche o modelo Word, gera o PDF, controla reenvio e aprovação de documentos e envia tudo por e-mail.</p><span class="tg">Automação</span>
+<span class="tg">Privado</span></li><li class="rv"><div><h3>Gestão de Ativos de TI</h3><span class="pst">Concluído</span></div><p>Controle dos equipamentos de TI de cada colaborador, com importação de planilha Excel e padronização das etiquetas.</p><span class="tg">Web</span>
+<span class="tg">Privado</span></li><li class="rv"><div><h3>Dashboard de embarques</h3><span class="pst">Concluído</span></div><p>Painel de processos de embarque com volume de contêineres por ETD e atrasos, lendo a planilha direto no navegador.</p><span class="tg">Web · Dados</span>
+<span class="tg">Privado</span></li><li class="rv"><div><h3>Escalonamento de tarefas</h3><span class="pst">Acadêmico</span></div><p>Busca Local Monótona e Simulated Annealing para distribuir tarefas entre máquinas paralelas, com experimentos e gráficos comparando os métodos.</p><span class="tg">Python · C#</span>
+<span class="tg">Privado</span></li><li class="rv"><div><h3>Monitor de cripto multiagente</h3><span class="pst">Acadêmico</span></div><p>Agentes em Java/JADE que acompanham preços de criptomoedas pela API da Binance, com interface em Swing.</p><span class="tg">Java · IA</span>
+<a href="https://github.com/henriquehce/agentesIA" target="_blank" rel="noopener">GitHub</a></li><li class="rv"><div><h3>Caixa do Henrique</h3><span class="pst">Em uso</span></div><p>Meu controle financeiro pessoal: gastos, planejamento, carteira e investimentos. Uso no PC e no celular.</p><span class="tg">Web</span>
 <span class="tg">Privado</span></li><li class="rv"><div><h3>AGAR Digital</h3><span class="pst">Em desenvolvimento</span></div><p>TCC: aplicativo de apoio a gestantes de alto risco do Ambulatório AGAR, da UNIVALI.</p><span class="tg">Mobile · Node.js</span>
 <a href="https://github.com/henriquehce/agar-backend" target="_blank" rel="noopener">Back-end no GitHub</a></li><li class="rv"><div><h3>Adote por Amor BC</h3><span class="pst">Extensão UNIVALI</span></div><p>Projeto de extensão para uma ONG de resgate de gatos de Balneário Camboriú.</p><span class="tg">Web</span>
 <a href="https://github.com/henriquehce/Adote_por_amor_bc" target="_blank" rel="noopener">GitHub</a></li><li class="rv"><div><h3>Tudo Sobre Cinema</h3><span class="pst">No ar</span></div><p>Site editorial responsivo inspirado em portais de entretenimento.</p><span class="tg">Web</span>
 <a href="https://henriquehce.github.io/Cinema/" target="_blank" rel="noopener">Abrir site</a></li><li class="rv"><div><h3>Platformer 2D</h3><span class="pst">Concluído</span></div><p>Jogo de plataforma com várias fases e progressão, feito na Godot.</p><span class="tg">Jogos</span>
-<a href="https://github.com/henriquehce/Godot2DGame" target="_blank" rel="noopener">GitHub</a></li><li class="rv"><div><h3>Coloração de grafos</h3><span class="pst">Acadêmico</span></div><p>Implementação e comparação de métodos de coloração de grafos.</p><span class="tg">Python</span>
-<a href="https://github.com/henriquehce/grafos_coloracao_e_metodos" target="_blank" rel="noopener">GitHub</a></li><li class="rv"><div><h3>Agentes de IA</h3><span class="pst">Acadêmico</span></div><p>Sistema multiagente em Java, feito na disciplina de Sistemas Multiagentes.</p><span class="tg">IA · Java</span>
-<a href="https://github.com/henriquehce/agentesIA" target="_blank" rel="noopener">GitHub</a></li></ul></div></section>
+<a href="https://github.com/henriquehce/Godot2DGame" target="_blank" rel="noopener">GitHub</a></li><li class="rv"><div><h3>Rixardê Studio</h3><span class="pst">Em construção</span></div><p>Software local que organiza e automatiza a produção de vídeos de IA para TikTok, em Python, FastAPI e SQLite.</p><span class="tg">Python · IA</span>
+<span class="tg">Privado</span></li></ul></div></section>
 
 <section id="sobre" style="background:var(--soft)"><div class="w">
 <h2 class="rv">Como eu trabalho</h2><ul class="princ"><li class="rv"><b>A solução mais simples que resolve o problema de hoje.</b><span>O que fica obsoleto é apagado, sem camada de compatibilidade.</span></li><li class="rv"><b>Entrega em fatias verticais.</b><span>Tela, API e dado juntos, sem desmontar o que já está no ar.</span></li><li class="rv"><b>Regra de cálculo separada e testada.</b><span>O número do relatório não depende do código da tela.</span></li><li class="rv"><b>Falha de rede nunca é silenciosa.</b><span>Se o upload não foi, a pessoa fica sabendo.</span></li><li class="rv"><b>Cada incidente vira teste ou trava.</b><span>O mesmo erro não acontece duas vezes.</span></li></ul>
